@@ -1,3 +1,3 @@
-public class A{}
+public class X{}
 class B{}
 class C{}
