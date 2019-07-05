@@ -12,18 +12,18 @@ public class Test13 {
     // 날짜 및 시간 옵션
     // Y : 날짜 및 시각 데이터에서 년도를 추출하여 4자리로 표현한다.
     // y : 날짜 및 시각 데이터에서 년도를 추출하여 뒤의 2자리로 표현한다.
-    System.out.printf("%1$tY, %1$ty\n", today);
+//    System.out.printf("%1$tY, %1$ty\n", today);
     
     // B : 날짜 및 시각 데이터에서 월을 추출하여 전체 이름으로 표현한다. ex) January
     // B : 날짜 및 시각 데이터에서 월을 추출하여 단축 이름으로 표현한다. ex) Jan
-    System.out.printf("%1$tB, %1$tb\n", today);
+//    System.out.printf("%1$tB, %1$tb\n", today);
     
     // m : 날짜 및 시각 데이터에서 월을 추출하여 2자리 숫자로 표현한다. ex) 12, 01
-    System.out.printf("%1$tm\n", today);
+//    System.out.printf("%1$tm\n", today);
     
     // d : 날짜 및 시각 데이터에서 일을 추출하여 2자리 숫자로 표현한다. ex) 01, 22
     // e : 날짜 및 시각 데이터에서 일을 추출하여 1자리 숫자로 표현한다. ex) 1, 22
-    System.out.printf("%1$td %1$te\n", today);
+//    System.out.printf("%1$td %1$te\n", today);
     
     // A : 날짜 및 시각 데이터에서 요일을 추출하여 긴 이름으로 표현한다. ex) Sunday
     // a : 날짜 및 시각 데이터에서 요일을 추출하여 짧은 이름으로 표현한다. ex) Sun
