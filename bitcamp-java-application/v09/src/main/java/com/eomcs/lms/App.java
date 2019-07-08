@@ -35,7 +35,6 @@ public class App {
       } else if (command.equals("/member/add")) {
         addMember();
         
-        
 
       } else if (command.equals("/member/list")) {
         listMember();
@@ -44,7 +43,7 @@ public class App {
         addBoard();
 
       } else if (command.equals("/board/list")) {
-        listBoard();
+        liatBoard();
 
       } else {
         System.out.println("해당 명령을 지원하지 않습니다.");
@@ -122,7 +121,7 @@ public class App {
     
   }
   
-  static void listBoard() {
+  static void liatBoard() {
     for (int i = 0; i < boardsSize; i++) {
       Board board = boards[i];
       System.out.printf("%s, %s, %s, %s\n", board.no, board.contents, board.createdDate,
