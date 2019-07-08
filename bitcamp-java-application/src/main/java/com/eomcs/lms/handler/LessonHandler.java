@@ -1,15 +1,17 @@
-package com.eomcs.lms;
+package com.eomcs.lms.handler;
 
 import java.sql.Date;
 import java.util.Scanner;
+import com.eomcs.lms.domain.Lesson;
+import com.eomcs.lms.util.Input;
 
 public class LessonHandler {
 
-  static Lesson[] lessons = new Lesson[100];
-  static int lessonsSize = 0;
-  static Scanner keyScan;
- 
-  static void addLesson() {
+  private static Lesson[] lessons = new Lesson[100];
+  private static int lessonsSize = 0;
+  public static Scanner keyScan;
+
+  public static void addLesson() {
     // 수업 데이터를 저장할 메모리를 Lesson 설계도에 따라만든다.
     Lesson lesson = new Lesson();
 
@@ -28,7 +30,7 @@ public class LessonHandler {
 
   }
 
-  static void listLesson() {
+  public static void listLesson() {
     for (int i = 0; i < lessonsSize; i++) {
       Lesson lesson = lessons[i];
       System.out.printf("%s, %s, %s ~ %s, %s\n", lesson.no, lesson.title, lesson.startDate,
