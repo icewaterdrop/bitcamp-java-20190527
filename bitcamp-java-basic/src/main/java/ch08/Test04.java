@@ -53,8 +53,8 @@ public class Test04 {
 
     // 클래스가 로딩되는 때? 클래스 멤버(필드, 메서드)를 사용할 때!
     // - 클래스 필드를 사용할 때
-    // My4.a = 300;
-    // keyScan.nextLine();
+     My4.a = 300;
+     keyScan.nextLine();
 
     // - 클래스 메서드를 사용할 때
     My4.m1();

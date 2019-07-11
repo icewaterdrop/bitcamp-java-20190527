@@ -20,7 +20,7 @@ public class Test02 {
     
     Scanner keyScan= new Scanner(System.in);
     
-    // 클래으에 대해 래퍼런스 변수를 만들 때는 클래스를 로딩하지 않는다.
+    // 클래스에 대해 래퍼런스 변수를 만들 때는 클래스를 로딩하지 않는다.
     My2 temp;
     
     System.out.println(">");

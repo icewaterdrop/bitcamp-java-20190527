@@ -6,6 +6,10 @@ import java.util.Calendar;
 public class Test16 {
   public static void main(String[] args) throws Exception {
     
+    final int YEAR = 1 ;
+    final int MONTH = 2 ;
+    final int DAY = 5 ;
+    
     Calendar c1;
     
     // 생성자가 있다하더라도 접근 권한이 없으면 호출할 수 없다.
@@ -14,8 +18,13 @@ public class Test16 {
     // Calendar는 인스턴스 생성을 도와주는 별도의 클래스 메서드(스태틱 메서드)를 제공한다.
     c1 = Calendar.getInstance();
     
-    System.out.println(c1.get(Calendar.YEAR));
-    
+    System.out.println(c1.get(1)); //년도 주석을 달지 않으면 무엇인지 알 수 없다.
+    System.out.println(c1.get(2)); // 월 추출 +1해야 현재 월
+    System.out.println(c1.get(5)); // 오늘 일자 
+    System.out.println(c1.get(YEAR));
+    System.out.println(c1.get(MONTH));
+    System.out.println(c1.get(DAY));
+    System.out.println(c1.get(Calendar.YEAR)); 
     /* 
      # 팩토리 메서드(factory method)
      - GoF(Gang of Four)의 23가지 디자인 패턴(design pattern) 중 하나이다. 

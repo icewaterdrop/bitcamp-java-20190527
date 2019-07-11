@@ -5,20 +5,22 @@ public class Calculator {
   // 개별적으로 관리 되어야 할 값은 인스턴스 필드에 저장해야 한다.
    int result;
   
-  static void plus(Calculator that, int a) {
-    that.result += a;
+  void plus(int a) {
+    //모든 인스턴스 메서드는 호출 될때 넘겨 받은 인스턴스 주소를
+    //내부에서 미리 생성한(bulit-in) 변수 this에 보관한다.
+    this.result += a;
   }
   
-  static void minus(Calculator that, int a) {
-    that.result -=a;
+  void minus(int a) {
+    this.result -=a;
   }
   
-  static void multiple(Calculator that, int a) {
-    that.result *=a;
+  void multiple(int a) {
+    this.result *=a;
   }
   
-  static void divide(Calculator that, int a) {
-    that.result /=a;
+  void divide(int a) {
+    this.result /=a;
   }
   
   
