@@ -3,7 +3,7 @@ package ch11;
 
 public class Test03 {
   public static void main(String[] args) {
-    
+
     String s1 = new String("Hello"); // 힙에 생성된다.
     String sx = "Hello";
     String s2 = s1.intern(); // s1이 가리키는 인스턴스를 상수풀에도 복제한다.
