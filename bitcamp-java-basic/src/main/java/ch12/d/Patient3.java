@@ -66,6 +66,7 @@ public class Patient3 {
   }
 
 
+  
   public void setGender(int gender) {
     if (gender > 0 && gender < 3)
       this.gender = gender;
