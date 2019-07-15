@@ -1,8 +1,6 @@
 // Wrapper 클래스 : 사용전 
 package ch11;
 
-import java.util.Date;
-
 public class Test09_2 {
   public static void main(String[] args) {
     // Wrapper 클래스의 가장 큰 목적!

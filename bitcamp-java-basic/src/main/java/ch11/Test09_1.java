@@ -1,8 +1,6 @@
 // Wrapper 클래스
 package ch11;
 
-import java.util.Date;
-
 public class Test09_1 {
   public static void main(String[] args) {
     // 자바는 primitive type의 값을 좀 더 정교하게 제어할 수 있도록 
@@ -33,6 +31,7 @@ public class Test09_1 {
     byte b = i1.byteValue(); // int를 byte로 변환하여 리턴하는 메서드
     String s = i1.toString(); // int를 String 인스턴스로 리턴하는 메서드
     String str = Integer.toHexString(200); // int 값을 16진수로 변환한 후 문자열로 리턴. 
+    
     
     
   }
