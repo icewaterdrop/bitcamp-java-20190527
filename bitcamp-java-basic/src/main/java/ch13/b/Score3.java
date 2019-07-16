@@ -47,15 +47,15 @@ public class Score3 extends Score {
     this.aver = this.sum / 5f;
   }
   
-  /*
-  protected void compute() {
-    System.out.println("Score3.compute() 호출됨!");
-    // 기존 계산 메서드를 호출해서 일단 국,영,수 세 과목의 합계와 평균을 계산한다.
-    // => 재정의 하기 전의 메서드를 호출할 때는 super 이용한다.
-    super.compute();
-    this.sum += this.music + this.art;
-    this.aver = this.sum / 5f;
-    */
+  
+//  protected void compute() {
+//    System.out.println("Score3.compute() 호출됨!");
+//    // 기존 계산 메서드를 호출해서 일단 국,영,수 세 과목의 합계와 평균을 계산한다.
+//    // => 재정의 하기 전의 메서드를 호출할 때는 super 이용한다.
+//    super.compute();
+//    this.sum += this.music + this.art;
+//    this.aver = this.sum / 5f;
+//  }
 }
 
 
