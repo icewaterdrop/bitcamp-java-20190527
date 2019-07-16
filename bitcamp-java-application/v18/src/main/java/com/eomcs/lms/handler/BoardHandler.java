@@ -26,7 +26,6 @@ public class BoardHandler {
     Board[] boards = boardList.toArray(new Board[] {});
     
     
-    
     for (Board board : boards) {
       System.out.printf("%s, %s, %s, %s\n", board.getNo(), board.getContents(),
           board.getCreatedDate(), board.getViewCount());
