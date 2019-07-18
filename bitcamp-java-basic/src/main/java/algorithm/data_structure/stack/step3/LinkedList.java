@@ -1,4 +1,4 @@
-package com.eomcs.util;
+package algorithm.data_structure.stack.step3;
 
 import java.lang.reflect.Array;
 
