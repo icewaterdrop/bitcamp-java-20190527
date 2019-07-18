@@ -1,19 +1,16 @@
-package com.eomcs.util;
+package algorithm.data_structure.linkedlist2.step1;
 
-import java.lang.reflect.Array;
-
-// LinkedList : 목록으로 다루는 값을 특정 타입으로 제한하기 위해 제네릭(generic) 적용하기
-public class LinkedList<T> {
-  Node<T> head;
-  Node<T> tail;
+public class LinkedList {
+  Node head;
+  Node tail;
   int size = 0;
 
   public LinkedList() {
 
   }
 
-  public boolean add(T value) {
-    Node<T> temp = new Node<>(value);
+  public boolean add(Object value) {
+    Node temp = new Node(value);
 
     if (head == null)
 
@@ -32,11 +29,11 @@ public class LinkedList<T> {
 
   }
 
-  public T get(int index) {
+  public Object get(int index) {
     if (index < 0 || index >= size)
       throw new IndexOutOfBoundsException("인덱스가 유효하지 않습니다!");
 
-    Node<T> node = head;
+    Node node = head;
     for (int i = 0; i < index; i++) {
       node = node.next;
     }
@@ -44,9 +41,9 @@ public class LinkedList<T> {
   }
 
   // 특정 위치의 값을 바꾼다.
-  public T set(int index, T value) {
+  public Object set(int index, Object value) {
 
-    Node<T> node = head;
+    Node node = head;
     if (index < 0 || index >= size)
       throw new IndexOutOfBoundsException("인덱스가 유효하지 않습니다!");
 
@@ -54,23 +51,23 @@ public class LinkedList<T> {
       node = node.next;
 
     }
-    T oldVal = node.value; // 노드에 저장된 기존값 백업
+    Object oldVal = node.value; // 노드에 저장된 기존값 백업
     node.value = value; // 해당 노드의 값을 파라미터에서 받은 값으로 변경
     return node.value; // 변경 전 값을 리턴
 
   }
 
   // 특정 위치의 값을 삭제한다.
-  public T remove(int index) {
+  public Object remove(int index) {
     if (index < 0 || index >= size)
       throw new IndexOutOfBoundsException("인덱스가 유효하지 않습니다!");
-    Node<T> deletedNode = null;
+    Node deletedNode = null;
     if (index == 0) {
       deletedNode = head;
       head = deletedNode.next;
     } else {
 
-      Node<T> node = head;
+      Node node = head;
       for (int i = 0; i < index - 1; i++) {
         // 삭제 하려는 노드의 이전 노드까지 간다.
         node = node.next;
@@ -84,7 +81,7 @@ public class LinkedList<T> {
       }
     }
 
-    T oldVal = deletedNode.value; // 삭제될 노드의 값을 임시 보관한다.
+    Object oldVal = deletedNode.value; // 삭제될 노드의 값을 임시 보관한다.
     deletedNode.value = null; // 삭제될 노드가 다른 객체를 참조하지 않도록 초기화시킨다.
     deletedNode.next = null; // 이런식으로 개발자가 메모리 관리에 기여할 수 있다.
 
@@ -97,19 +94,19 @@ public class LinkedList<T> {
   }
 
   public void clear() {
-    if (size == 0)
-      return;
-    // 노드를 따라가면서 삭제하기
-
-    while (head != null) {
-      Node<T> deletedNode = head;
+    if(size == 0)
+        return; 
+      //노드를 따라가면서 삭제하기
+    
+    while(head != null) {
+      Node deletedNode =head;
       head = head.next;
       deletedNode.value = null;
       deletedNode.next = null;
-
+       
     }
-    tail = null;
-    size = 0;
+    tail = null; 
+    size = 0; 
   }
 
   public Object[] toArray() {
@@ -117,56 +114,25 @@ public class LinkedList<T> {
     Object[] arr = new Object[size];
     // LinkedList의 head에서 tail까지 반복하면서 배열에 value를 복사한다.
     // 방법1 :
-    // Node node = head;
-    // for (int i = 0; i < size; i++) {
-    // arr[i] = node.value;
-    // node = node.next;
-    // }
-
-    // 방법2:
-    Node<T> node = head;
-    int i = 0;
+//    Node node = head;
+//    for (int i = 0; i < size; i++) {
+//     arr[i] = node.value;
+//     node = node.next;
+//    }
+    
+    //방법2:
+    Node node = head;
+    int i =0;
     while (node != null) {
-      arr[i++] = node.value;
-      node = node.next;
-
+     arr[i++] = node.value;
+     node =node.next;
+         
     }
 
     // 배열을 리턴한다.
     return arr;
   }
+  
 
-  public T[] toArray(T[] a) {
-
-    if (a.length < size) {
-      // 파라미터로 넘겨 받은 배열의 크기가 저장된 데이터의 개수 보다 작다면
-      // 이메서드에서 새 배열을 만든다.
-      a = (T[])Array.newInstance(a.getClass().getComponentType(), size);
-    }
-
-    Node<T> node = head;
-    for (int i = 0; i < size; i++) {
-      a[i] = node.value;
-      node = node.next;
-    }
-    if (a.length > size)
-      a[size] = null;;
-    return a;
-  }
-
-  // Node 객체에 보관하는 데이터의 클래스 이름을 "타입 파라미터" T에 받는다
-  static public class Node<T> {
-    T value;
-    Node<T> next;
-
-    public Node() {
-
-    }
-
-    public Node(T value) {
-      this.value = value;
-    }
-
-  }
 
 }

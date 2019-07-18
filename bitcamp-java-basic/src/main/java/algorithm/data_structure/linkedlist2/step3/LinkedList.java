@@ -1,4 +1,4 @@
-package com.eomcs.util;
+package algorithm.data_structure.linkedlist2.step3;
 
 import java.lang.reflect.Array;
 
