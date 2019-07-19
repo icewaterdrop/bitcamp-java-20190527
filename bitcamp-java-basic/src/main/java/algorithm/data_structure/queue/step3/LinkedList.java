@@ -1,9 +1,9 @@
-package com.eomcs.util;
+package algorithm.data_structure.queue.step3;
 
 import java.lang.reflect.Array;
 
 // LinkedList : 목록으로 다루는 값을 특정 타입으로 제한하기 위해 제네릭(generic) 적용하기
-public class LinkedList<T> implements List<T> {
+public class LinkedList<T> {
   Node<T> head;
   Node<T> tail;
   int size = 0;
@@ -12,7 +12,6 @@ public class LinkedList<T> implements List<T> {
 
   }
 
-  @Override
   public boolean add(T value) {
     Node<T> temp = new Node<>(value);
 
@@ -24,12 +23,11 @@ public class LinkedList<T> implements List<T> {
       tail.next = temp;
     tail = temp;
     size++;
-
+ 
     return true;
 
   }
 
-  @Override
   public T get(int index) {
     if (index < 0 || index >= size)
       throw new IndexOutOfBoundsException("인덱스가 유효하지 않습니다!");
@@ -42,7 +40,6 @@ public class LinkedList<T> implements List<T> {
   }
 
   // 특정 위치의 값을 바꾼다.
-  @Override
   public T set(int index, T value) {
 
     Node<T> node = head;
@@ -60,7 +57,6 @@ public class LinkedList<T> implements List<T> {
   }
 
   // 특정 위치의 값을 삭제한다.
-  @Override
   public T remove(int index) {
     if (index < 0 || index >= size)
       throw new IndexOutOfBoundsException("인덱스가 유효하지 않습니다!");
@@ -92,11 +88,10 @@ public class LinkedList<T> implements List<T> {
     return oldVal;
   }
 
-  @Override
   public int size() {
     return size;
   }
-  @Override
+
   public void clear() {
     if (size == 0)
       return;
@@ -112,7 +107,7 @@ public class LinkedList<T> implements List<T> {
     tail = null;
     size = 0;
   }
-  @Override
+
   public Object[] toArray() {
     // LinkedList에 있는 데이터를 저장할 배열을 준비한다.
     Object[] arr = new Object[size];
@@ -136,14 +131,13 @@ public class LinkedList<T> implements List<T> {
     // 배열을 리턴한다.
     return arr;
   }
-  @SuppressWarnings("unchecked")
-  @Override
+
   public T[] toArray(T[] a) {
 
     if (a.length < size) {
       // 파라미터로 넘겨 받은 배열의 크기가 저장된 데이터의 개수 보다 작다면
       // 이메서드에서 새 배열을 만든다.
-      a = (T[]) Array.newInstance(a.getClass().getComponentType(), size);
+      a = (T[])Array.newInstance(a.getClass().getComponentType(), size);
     }
 
     Node<T> node = head;
