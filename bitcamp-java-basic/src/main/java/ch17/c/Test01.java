@@ -1,4 +1,4 @@
-// 정렬 객체를 일관성 있게 사용하려면 같은 타입으로 묶어야 한다. 상속의 generaliazation 기법 이용! 
+// 정렬 객체를 일관성 있게 사용하려면 같은 타입으로 묶어야 한다. 상속의 generalization 기법 이용! 
 package ch17.c;
 
 public class Test01 {

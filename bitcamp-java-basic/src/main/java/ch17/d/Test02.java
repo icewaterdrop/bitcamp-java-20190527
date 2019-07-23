@@ -27,7 +27,7 @@ public class Test02 {
     // 따라서 Sorter의 인스턴스가 넘어올 수는 없는 것이다. )
     // 따라서 정렬을 수행하려면 Sorter에 정의된 sort()를 호출할 것이다.
     // 여기서 문제가 발생한다.
-    // BubbleSort난 QuickSort 클래스는 sort()를 오버라이딩 하였다.
+    // BubbleSort나 QuickSort 클래스는 sort()를 오버라이딩 하였다.
     // 그러나 MergeSort는 sort()를 오버라이딩 하지 않았다.
     // 따라서 파라미터로 넘어오는 객체가 MergerSort 라면 
     // 다음 메서드를 호출하는 것은 아무런 의미가 없을 것이다.
