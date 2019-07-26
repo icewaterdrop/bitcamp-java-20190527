@@ -15,7 +15,7 @@ public class Test01 {
     // => 이클립스 : 프로젝트 디렉토리를 가리킨다.
     // => 콘솔 : 현재 명령어를 실행하는 위치를 가리킨다.
     //
-    File dir = new File("../../teacher/java-basic");
+    File dir = new File("../bitcamp-java-application/src2");
     System.out.println(dir.getName()); // 폴더명
     System.out.println(dir.getPath()); // 경로
     System.out.println(dir.getAbsolutePath()); // 절대 경로
@@ -31,7 +31,7 @@ public class Test01 {
     System.out.println(dir.isFile());
     System.out.println(dir.isHidden());
     System.out.println(dir.exists());
-    System.out.println(dir.canExecute());
+    System.out.println(dir.canExecute()); // 실행 권한이 있느냐
     
     System.out.println("---------------------------");
     

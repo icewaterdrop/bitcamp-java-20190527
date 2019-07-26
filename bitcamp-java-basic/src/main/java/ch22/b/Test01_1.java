@@ -5,6 +5,7 @@ package ch22.b;
 import java.io.FileOutputStream;
 
 public class Test01_1 {
+  
   public static void main(String[] args) {
     // 바이너리 데이터?
     // => character set(문자표) 규칙에 따라 작성한 파일이 아닌 파일.

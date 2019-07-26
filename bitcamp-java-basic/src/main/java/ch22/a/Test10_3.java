@@ -7,32 +7,22 @@ import java.io.FilenameFilter;
 public class Test10_3 {
 
   public static void main(String[] args) throws Exception {
-    
+
     File file = new File(".");
-    
-    // anonymous class 
+
+    // anonymous class
     String[] names = file.list(new FilenameFilter() {
       @Override
       public boolean accept(File dir, String name) {
-        if (name.endsWith(".txt"))
-          return true;
-        else 
-          return false;
+        return name.endsWith(".txt");
       }
     });
-    
+
     for (String name : names) {
       System.out.println(name);
     }
-    
-  }    
+
+  }
 }
-
-
-
-
-
-
-
 
 

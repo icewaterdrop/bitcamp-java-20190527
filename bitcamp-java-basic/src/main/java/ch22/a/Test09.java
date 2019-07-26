@@ -17,6 +17,7 @@ public class Test09 {
       System.out.printf("%s %12d %s\n", 
           f.isDirectory() ? "d" : "-",
           f.length(),
+          
           f.getName());
     }
     
