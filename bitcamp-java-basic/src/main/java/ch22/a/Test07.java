@@ -15,13 +15,12 @@ public class Test07 {
 //    System.out.println(dir.getName());
 //    System.out.println(dir.getPath());
 //    System.out.println(dir.getCanonicalPath());
-    
+   
 //    File dir = file.getParentFile();
-//  System.out.println(dir.getName());
-//  System.out.println(dir.getPath());
-//  System.out.println(dir.getCanonicalPath());
+//    System.out.println(dir.getName());
+//    System.out.println(dir.getPath());
+//    System.out.println(dir.getCanonicalPath());
 //    
-    
     // 먼저 디렉토리를 생성한다.
     if (dir.mkdirs()) {
       System.out.println("디렉토리를 생성함.");
@@ -34,7 +33,6 @@ public class Test07 {
     } else {
       System.out.println("파일을 생성하지 못함.");
     }
-    
   }    
 }
 

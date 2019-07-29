@@ -31,7 +31,7 @@ public class Test01 {
     System.out.println(dir.isFile());
     System.out.println(dir.isHidden());
     System.out.println(dir.exists());
-    System.out.println(dir.canExecute()); // 실행 권한이 있느냐
+    System.out.println(dir.canExecute());
     
     System.out.println("---------------------------");
     

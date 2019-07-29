@@ -1,13 +1,9 @@
 // 애플리케이션 예외의 종류: Exception 계열의 예외 처리 II
 package ch21.c;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.util.Scanner;
-
 public class Test03_1 {
 
-  public static void main(String[] args) throws Exception{ // main()의 호출자? JVM이다.
+  public static void main(String[] args) throws Exception { // main()의 호출자? JVM이다.
     // Exception 계열의 예외 처리 방법
     // 1) try ~ catch로 예외 받기
     //    try {
@@ -29,12 +25,13 @@ public class Test03_1 {
     
     int result = divide(100, 0);
     System.out.println(result);
+    
   }
-
-  static int divide(int a, int b) throws Exception{
-    if (b== 0)
+  
+  static int divide(int a, int b) throws Exception {
+    if (b == 0)
       throw new Exception("0으로 나눌 수 없습니다.");
     return a / b;
   }
-  
+
 }

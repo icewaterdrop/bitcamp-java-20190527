@@ -13,18 +13,25 @@ public class Test10_1 {
       return name.endsWith(".txt");
     }
   }
-
+  
   public static void main(String[] args) throws Exception {
-
+    
     File file = new File(".");
-
+    
     String[] names = file.list(new TextFileFilter());
-
+    
     for (String name : names) {
       System.out.println(name);
     }
-
-  }
+    
+  }    
 }
+
+
+
+
+
+
+
 
 

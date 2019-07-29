@@ -11,10 +11,11 @@ public class Test01_2 {
     FileReader in;
     
     try {
-    in = new FileReader("build.gradle"); 
-    } catch(FileNotFoundException e) {
+      in = new FileReader("build.gradle");
+    } catch (FileNotFoundException e) {
       System.out.println("해당 파일을 찾을 수 없습니다!");
     }
+
   }
 
 }

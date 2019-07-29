@@ -7,8 +7,6 @@ public class Test03_2 {
 
   public static void main(String[] args) throws Exception {
     
-
-    
     // 존재하지 않는 폴더 아래에 새 폴더를 만들 때 
     // => 존재하지 않는 폴더가 자동 생성되지 않는다. 
     // => 따라서 그 하위 폴더를 생성할 수 없다.
@@ -19,8 +17,7 @@ public class Test03_2 {
     } else {
       System.out.println("디렉토리 생성 못함.");
     }
-    
-   
+ 
   }
 
 }
