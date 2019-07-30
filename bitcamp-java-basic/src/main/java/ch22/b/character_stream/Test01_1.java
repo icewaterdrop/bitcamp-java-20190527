@@ -10,7 +10,7 @@ public class Test01_1 {
     // FileWriter
     // => 문자 단위로 데이터를 출력하는 일을 한다.
     //
-    FileWriter out = new FileWriter("data.txt"); 
+    FileWriter out = new FileWriter("data.txt");
 
     // write(문자코드) 
     // => JVM에서 문자를 다루기 위해 사용하는 UTF-16 코드를 
@@ -44,10 +44,9 @@ public class Test01_1 {
     // 결론!
     // => 무슨 OS를 사용하든지 출력할 때는 가능한 국제 표준인 UTF-8을 사용하라.
     // 
-
-
+    
     out.close();
-
+    
     System.out.println("출력 완료!");
   }
 

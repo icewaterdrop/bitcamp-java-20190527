@@ -26,7 +26,6 @@ public class Test01_2 {
 
     in.close();
 
-
     System.out.println("출력 완료!");
   }
 }

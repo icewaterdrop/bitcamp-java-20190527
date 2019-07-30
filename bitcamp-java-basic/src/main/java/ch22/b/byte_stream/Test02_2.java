@@ -29,7 +29,6 @@ public class Test02_2 {
 
     in.close();
 
-
     System.out.println("출력 완료!");
   }
 

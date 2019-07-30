@@ -20,7 +20,6 @@ public class Test03_1 {
 
     out.close();
 
-
     System.out.println("출력 완료!");
   }
 }
