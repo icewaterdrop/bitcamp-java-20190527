@@ -4,11 +4,10 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.sql.Date;
 import java.util.List;
-import com.eomcs.lms.domain.Board;
+import com.eomcs.lms.domain.Member;
 
-public class ServerTest3 {
+public class ServerTest {
 
   static ObjectOutputStream out;
   static ObjectInputStream in;
@@ -24,30 +23,34 @@ public class ServerTest3 {
 
 
       // 다른 메서드가 입출력 객체를 사용할 수 있도록 스태틱 변수에 저장한다.
-      ServerTest3.in = in;
-      ServerTest3.out = out;
+      ServerTest.in = in;
+      ServerTest.out = out;
 
-      Board Board = new Board();
+      Member member = new Member();
+      member.setNo(1);
+      member.setName("홍길동");
+      member.setEmail("hong@test.com");
+      member.setPhoto("hong.gif");
+      member.setTel("1111-1111");
 
-      Board.setNo(1);
-      Board.setContents("제목1");
-
-      if (!add(Board)) {
+      if (!add(member)) {
         error();
       }
-
+      
       System.out.println("------------------");
+     
 
+      member = new Member();
+      member.setNo(2);
+      member.setName("임꺽정");
+      member.setEmail("leem@test.com");
+      member.setPhoto("leem.gif");
+      member.setTel("1111-2222");
 
-      Board = new Board();
-
-      Board.setNo(2);
-      Board.setContents("제목2");
-
-      if (!add(Board)) {
+      if (!add(member)) {
         error();
       }
-
+      
       System.out.println("------------------");
       if (!list()) {
         error();
@@ -67,28 +70,29 @@ public class ServerTest3 {
         error();
       }
       System.out.println("------------------");
-
-      Board = new Board();
       
-
-      Board.setNo(1);
-      Board.setContents("오호라...변경");
-
-      if (!update(Board)) {
+      member = new Member();
+      member.setNo(1);
+      member.setName("고길동");
+      member.setEmail("hong2@test.com");
+      member.setPhoto("hong.gif");
+      member.setTel("1111-1111");
+      
+      if (!update(member)) {
         error();
       }
       System.out.println("------------------");
-
+      
       if (!list()) {
         error();
       }
       System.out.println("------------------");
-
+      
       if (!quit()) {
         error();
       }
 
-    } catch (IOException e) {
+    }  catch (IOException e) {
       e.printStackTrace();
     }
 
@@ -96,8 +100,8 @@ public class ServerTest3 {
   }
 
 
-
-
+  
+  
   private static void error() throws Exception {
     System.out.printf("오류 : %s\n", in.readUTF());
   }
@@ -117,7 +121,7 @@ public class ServerTest3 {
 
   private static boolean delete() throws Exception {
     // 서버가 처리할 수 없는 명령어 보내기
-    out.writeUTF("/board/delete");
+    out.writeUTF("/member/delete");
     out.writeInt(2);
     out.flush();
     System.out.print("delete 요청함 =>");
@@ -128,10 +132,10 @@ public class ServerTest3 {
     System.out.println("처리 완료!");
     return true;
   }
-
+  
   private static boolean detail() throws Exception {
     // 서버가 처리할 수 없는 명령어 보내기
-    out.writeUTF("/board/detail");
+    out.writeUTF("/member/detail");
     out.writeInt(1);
     out.flush();
     System.out.print("detail 요청함 =>");
@@ -145,9 +149,9 @@ public class ServerTest3 {
     return true;
   }
 
-  private static boolean update(Board obj) throws Exception {
-    out.writeUTF("/board/update");
-    out.writeObject(obj);
+  private static boolean update(Member m) throws Exception {
+    out.writeUTF("/member/update");
+    out.writeObject(m);
     out.flush();
     System.out.print("update 요청함 =>");
 
@@ -160,7 +164,7 @@ public class ServerTest3 {
 
   private static boolean list() throws Exception {
 
-    out.writeUTF("/board/list");
+    out.writeUTF("/member/list");
     out.flush();
     System.out.print("list 요청함 =>");
 
@@ -170,24 +174,24 @@ public class ServerTest3 {
     System.out.println("처리 완료!");
 
     @SuppressWarnings("unchecked")
-    List<Board> list = (List<Board>) in.readObject();
+    List<Member> list = (List<Member>) in.readObject();
     System.out.println("------------------");
-    for (Board obj : list) {
-      System.out.println(obj);
+    for (Member m : list) {
+      System.out.println(m);
     }
     return true;
   }
-
-  private static boolean add(Board obj) throws IOException {
-
-    out.writeUTF("/board/add");
-    out.writeObject(obj);
+  
+  private static boolean add(Member m) throws IOException {
+    
+    out.writeUTF("/member/add");
+    out.writeObject(m);
     out.flush();
     System.out.print("add 요청함 =>");
-
+    
     if (!in.readUTF().equals("ok"))
       return false;
-
+    
     System.out.println("처리 완료!");
     return true;
   }
