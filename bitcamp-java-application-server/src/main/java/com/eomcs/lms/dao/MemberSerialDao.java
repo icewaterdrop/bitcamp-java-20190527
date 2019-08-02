@@ -11,13 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 import com.eomcs.lms.domain.Member;
 
-public class MemberSerialDao {
+public class MemberSerialDao extends AbstractDataSerializer<Member, Integer>{
   
-  ArrayList<Member> list = new ArrayList<>();
-  File file;
   
   public MemberSerialDao(String file) throws ClassNotFoundException {
-    this.file = new File(file);
+    super(file);
     
     try {
       loadData();
@@ -26,21 +24,10 @@ public class MemberSerialDao {
     }
   }
   
-  @SuppressWarnings("unchecked")
-  private void loadData() throws IOException, ClassNotFoundException {
-    try (ObjectInputStream in = new ObjectInputStream(
-          new FileInputStream(file))) {
-      list = (ArrayList<Member>) in.readObject();
-      System.out.println("회원 데이터 로딩 완료!");
-    }
-  }
-  
+  @Override
   public void saveData() {
-    try (
-      ObjectOutputStream out = new ObjectOutputStream(
-          new FileOutputStream(file))) {
-      
-      out.writeObject(list);
+    try { 
+      super.saveData();
       System.out.println("회원 데이터 저장 완료!");
       
     } catch (FileNotFoundException e) {
@@ -87,10 +74,11 @@ public class MemberSerialDao {
     return 1;
   }
   
-  private int indexOf(int no) {
+  @Override
+  public int indexOf(Integer key) {
     int i = 0;
     for (Member obj : list) {
-      if (obj.getNo() == no) {
+      if (obj.getNo() == key) {
         return i;
       }
       i++;
