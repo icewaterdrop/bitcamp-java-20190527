@@ -1,35 +1,39 @@
-package com.eomcs.lms;
+package com.eomcs.lms.servlet;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import com.eomcs.lms.domain.Lesson;
+import com.eomcs.lms.Servlet;
+import com.eomcs.lms.domain.Member;
 
-public class LessonServlet implements Servlet{
 
-  ArrayList<Lesson> lessonList = new ArrayList<>();
+
+public class MemberServlet implements Servlet {
+
+
+  ArrayList<Member> memberList = new ArrayList<>();
+
+
 
   ObjectInputStream in;
   ObjectOutputStream out;
 
-  public LessonServlet(ObjectInputStream in, ObjectOutputStream out) {
+
+  public MemberServlet(ObjectInputStream in, ObjectOutputStream out) {
     this.in = in;
     this.out = out;
   }
 
+  private void updateMember() throws Exception {
 
+    Member member = (Member)in.readObject();
 
-
-  private void updateLesson() throws Exception {
-
-    Lesson lesson = (Lesson)in.readObject();
-
-    int index = indexOfLesson(lesson.getNo());
+    int index = indexOfMember(member.getNo());
     if (index != -1) {
       fail("해당번호의 회원이 없습니다.");
       return;
     }
-    lessonList.set(index, lesson);
+    memberList.set(index, member);
     out.writeUTF("ok");
 
 
@@ -37,48 +41,48 @@ public class LessonServlet implements Servlet{
 
 
 
-  private void detailLesson() throws Exception{
+  private void detailMember() throws Exception{
     int no = in.readInt();
-    int index = indexOfLesson(no);
+    int index = indexOfMember(no);
     if (index != -1) {
       fail("해당번호의 회원이 없습니다.");
       return;
     }
     out.writeUTF("ok");
-    out.writeObject(lessonList.get(index));
+    out.writeObject(memberList.get(index));
 
   }
 
-  private void deleteLesson() throws Exception {
+  private void deleteMember() throws Exception {
     int no = in.readInt();
 
-    int index = indexOfLesson(no);
+    int index = indexOfMember(no);
     if (index != -1) {
       fail("해당번호의 회원이 없습니다.");
       return;
     }
-    lessonList.remove(index);
+    memberList.remove(index);
     out.writeUTF("ok");
 
   }
 
-  private void addLesson() throws Exception {
+  private void addMember() throws Exception {
     // 클라이언트가 보낸 객체를 읽는다.
-    Lesson lesson = (Lesson)in.readObject();
-    lessonList.add(lesson);
+    Member member = (Member)in.readObject();
+    memberList.add(member);
     out.writeUTF("ok");
   }
 
-  private void listLesson() throws Exception {
+  private void listMember() throws Exception {
     out.writeUTF("ok");
     out.reset(); // 기존의 serialize 했던 객체의 상태를 무시하고 다시 serialize 한다.
-    out.writeObject(lessonList);
+    out.writeObject(memberList);
   }
 
-  private int indexOfLesson(int no) {
+  private int indexOfMember(int no) {
     int i = 0;
-    for (Lesson l : lessonList) {
-      if (l.getNo() == no) {
+    for (Member m : memberList) {
+      if (m.getNo() == no) {
         return i ;
       }
       i++;
@@ -93,26 +97,24 @@ public class LessonServlet implements Servlet{
 
   @Override
   public void service(String command) throws Exception {
-
     switch (command) {
-
-      case "/lesson/add":
-        addLesson();
+      case "/member/add":
+        addMember();
         break;
-      case "/lesson/list":
-        listLesson();
+      case "/member/list":
+        listMember();
         break;
 
-      case "/lesson/delete" :
-        deleteLesson();
+      case "/member/delete" :
+        deleteMember();
         break; 
 
-      case "/lesson/detail":
-        detailLesson();
+      case "/member/detail":
+        detailMember();
         break;  
 
-      case "/lesson/update":
-        updateLesson();
+      case "/member/update":
+        updateMember();
         break;  
 
       case "quit":
@@ -122,9 +124,7 @@ public class LessonServlet implements Servlet{
       default:
         out.writeUTF("fail");
         out.writeUTF("지원하지 않는 명령입니다.");
-
     }
-
   }
 
 }
