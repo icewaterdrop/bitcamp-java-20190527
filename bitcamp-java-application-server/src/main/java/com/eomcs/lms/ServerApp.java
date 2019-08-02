@@ -38,37 +38,36 @@ public class ServerApp {
 
         System.out.println("클라이언트와 연결되었음.");
 
-        // 다른 메서드가 사용할 수 있도록 입출력 스트림을 스태틱 변수에 저장한다.
-        ServerApp.in = in;
-        ServerApp.out = out;
-
         BoardServlet boardServlet = new BoardServlet(in, out);
         LessonServlet lessonServlet = new LessonServlet(in, out);
         MemberServlet memberServlet = new MemberServlet(in, out);
-        loop: 
-          while (true) {
-            String command = in.readUTF();
-            System.out.println(command + " 요청 처리중...");
-            if(command.startsWith("/board/")) {
-              boardServlet.service(command);
-              out.flush();
-              continue;
-            } else if(command.startsWith("/lesson/")) {
-              lessonServlet.service(command);
-              out.flush();
-              continue;
-            } else if(command.startsWith("/member/")) {
-              memberServlet.service(command);
-              out.flush();
-              continue;
-            }
+
+
+        while (true) {
+          String command = in.readUTF();
+          System.out.println(command + " 요청 처리중...");
+          if(command.startsWith("/board/")) {
+            boardServlet.service(command);
+
+          } else if(command.startsWith("/lesson/")) {
+            lessonServlet.service(command);
+
+          } else if(command.startsWith("/member/")) {
+            memberServlet.service(command);
+          }   else if (command.equals("quit")) {
+            out.writeUTF("ok");
             out.flush();
-            System.out.println("클라이언트에게 응답 완료!");
-
-          } // loop:
-
+            break;
+          } else {
+            out.writeUTF("fail");
+            out.writeUTF("지원하지 않는 명령입니다.");
+          }
+          out.flush();
+          System.out.println("클라이언트에게 응답 완료!");
+        } 
       }
-
+      
+      System.out.println("클라이언트와 연결을 끊었음");
 
     } catch (Exception e) {
       e.printStackTrace();
