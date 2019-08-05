@@ -4,9 +4,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
+import com.eomcs.lms.dao.BoardDao;
 import com.eomcs.lms.domain.Board;
 
-public class BoardCsvDao extends AbstractCsvDataSerializer<Board,Integer> {
+public class BoardCsvDao extends AbstractCsvDataSerializer<Board,Integer> implements BoardDao {
   
   public BoardCsvDao(String file) {
     super(file);
@@ -71,25 +72,25 @@ public class BoardCsvDao extends AbstractCsvDataSerializer<Board,Integer> {
     }
     return -1;
   }
-  
-  public int add(Board board) throws Exception {
+  @Override
+  public int insert(Board board) throws Exception {
     list.add(board);
     return 1;
   }
-  
-  public List<Board> list() throws Exception {
+  @Override
+  public List<Board> findAll() throws Exception {
     return list;
   }
-  
-  public Board get(int no) throws Exception {
+  @Override
+  public Board findBy(int no) throws Exception {
     int index = indexOf(no);
     if (index == -1)
       return null;
     
     return list.get(index);
   }
-  
-  public int modify(Board board) throws Exception {
+  @Override
+  public int update(Board board) throws Exception {
     int index = indexOf(board.getNo());
     if (index == -1)
       return 0;
@@ -97,8 +98,8 @@ public class BoardCsvDao extends AbstractCsvDataSerializer<Board,Integer> {
     list.set(index, board);
     return 1;
   }
-  
-  public int remove(int no) throws Exception {
+  @Override
+  public int delete(int no) throws Exception {
     int index = indexOf(no);
     if (index == -1)
       return 0;

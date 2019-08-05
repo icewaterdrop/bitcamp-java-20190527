@@ -8,7 +8,7 @@ import com.eomcs.lms.dao.MemberDao;
 import com.eomcs.lms.domain.Member;
 
 public class MemberCsvDao extends AbstractCsvDataSerializer<Member,Integer> 
-implements MemberDao{
+    implements MemberDao {
   
   public MemberCsvDao(String file) {
     super(file);
@@ -76,15 +76,18 @@ implements MemberDao{
     }
     return -1;
   }
+  
   @Override
   public int insert(Member member) throws Exception {
     list.add(member);
     return 1;
   }
+  
   @Override
   public List<Member> findAll() throws Exception {
     return list;
   }
+  
   @Override
   public Member findBy(int no) throws Exception {
     int index = indexOf(no);
@@ -93,6 +96,7 @@ implements MemberDao{
     
     return list.get(index);
   }
+  
   @Override
   public int update(Member member) throws Exception {
     int index = indexOf(member.getNo());
@@ -102,6 +106,7 @@ implements MemberDao{
     list.set(index, member);
     return 1;
   }
+  
   @Override
   public int delete(int no) throws Exception {
     int index = indexOf(no);
