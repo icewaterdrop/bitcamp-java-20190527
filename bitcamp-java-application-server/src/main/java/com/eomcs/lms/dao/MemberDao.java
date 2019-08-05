@@ -1,9 +1,6 @@
 package com.eomcs.lms.dao;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.List;
-import com.eomcs.lms.dao.serial.AbstractDataSerializer;
 import com.eomcs.lms.domain.Member;
 
 
