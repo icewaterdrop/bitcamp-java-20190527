@@ -1,8 +1,8 @@
-// 중첩 클래스 사용 I : static nested class 와 inner 클래스 사용 
+// 중첩 클래스 사용 I : static nested class와 inner 클래스 사용
 package ch19.a;
 
 class X {
-  
+   
   static class A {}
   
   class B {}
@@ -26,7 +26,7 @@ class X {
     x.m2(); // OK!
     
     // 당연히 인스턴스 주소만 있다면 X의 inner 클래스인 B 객체로 생성할 수 있다.
-    obj2 = x.new B(); // 실무에서는 이렇게 외부의 인스턴스를 가지고 inner 클래스를 생성하는 
+    obj2 = x.new B(); // 실무에서는 이렇게 외부의 인스턴스를 가지로 inner 클래스를 생성하는 
                       // 방식을 거의 사용하지 않는다. 그냥 참고만 하라!
     
   }
@@ -72,11 +72,9 @@ public class Test03 {
     
     X x = new X();
     obj2 = x.new B(); // OK!
-    
   }
 
 }
-
 
 
 

@@ -1,4 +1,4 @@
-// 인스턴스 출력 serialVersionUID 스태틱 필드 사용하기
+// 인스턴스 출력 - serialVersionUID 스태틱 필드 사용하기
 package ch22.f;
 
 import java.io.FileOutputStream;
@@ -7,7 +7,7 @@ import java.io.ObjectOutputStream;
 public class Test3_1 {
 
   public static void main(String[] args) throws Exception {
-    FileOutputStream out0 = new FileOutputStream("temp/score3.data");   
+    FileOutputStream out0 = new FileOutputStream("temp/score.data");
     ObjectOutputStream out = new ObjectOutputStream(out0);
 
     // 인스턴스 출력하기

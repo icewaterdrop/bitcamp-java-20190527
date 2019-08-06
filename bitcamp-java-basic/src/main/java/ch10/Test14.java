@@ -14,6 +14,7 @@ public class Test14 {
     
     String s2 = new String("Hello"); // 문자열 리터럴로 String 인스턴스 생성
     System.out.printf("s2=%s\n", s2);
+    
     char[] chars = {'H', 'e', 'l', 'l', 'o'};
     String s3 = new String(chars); // char 배열로 String 인스턴스 생성
     System.out.printf("s3=%s\n", s3);
@@ -35,6 +36,7 @@ public class Test14 {
     
     String s5 = new String(bytes, "euc-kr");
     System.out.printf("s5=%s\n", s5);
+    
     byte[] bytes2 = {(byte)0xac, (byte)0x00, (byte)0xac, (byte)0x01, 
         0x00, 0x61, 0x00, 0x62, 0x00, 0x63};
     
@@ -42,13 +44,13 @@ public class Test14 {
     // 그래야 자바의 문자 코드로 제대로 변경할 수 있을 것이다.
     String s6 = new String(bytes2, "utf-16");
     System.out.printf("s6=%s\n", s6);
+    
     byte[] bytes3 = {(byte)0xea, (byte)0xb0, (byte)0x80, 
         (byte)0xea, (byte)0xb0, (byte)0x81, 
         0x61, 0x62, 0x63};
     
     String s7 = new String(bytes3, "utf-8");
     System.out.printf("s7=%s\n", s7);
-
   }
 }
 

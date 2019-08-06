@@ -6,4 +6,5 @@ public class EvenFilter implements Filter {
   public boolean accept(int value) {
     return (value % 2) == 0;
   }
+
 }

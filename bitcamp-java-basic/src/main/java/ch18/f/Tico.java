@@ -1,4 +1,4 @@
-// 인터페이스 구현
+// 인터페이스 직접 구현
 package ch18.f;
 
 // 사용하는 쪽에서 일관된 방식으로 메서드를 호출할 수 있도록 
@@ -13,7 +13,7 @@ public class Tico implements CarSpec {
   
   @Override
   public void on() {
-    System.out.println("시동 켠다");
+    System.out.println("시동 켠다!");
   }
   
   @Override

@@ -3,8 +3,10 @@ package ch12.c.other;
 import ch12.c.My;
 
 public class My2 extends My {
+  
   public void m1() {
     My obj1 = new My();
+    
     // private
     //obj1.v1 = 100; // 컴파일 오류!
     
@@ -25,9 +27,6 @@ public class My2 extends My {
     this.v3 = 100; // OK! 상속 받은 필드의 경우 서브 클래스에서 접근 가능!
     
     this.v4 = 100; // OK!
-
-    
-    
   }
 }
 

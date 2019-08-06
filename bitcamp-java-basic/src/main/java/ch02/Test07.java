@@ -21,6 +21,7 @@ public class Test07 {
     System.out.println(v);
     System.out.println((char)v);
     System.out.println('흥');
+    
     // 문자의 코드를 알지 못한다면 작은 따옴표('')를 이용할 수 있다.
     // '가'?
     // 한글 '가'의 UTF-16 값을 리턴한다.

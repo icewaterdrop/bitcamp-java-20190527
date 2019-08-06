@@ -1,12 +1,8 @@
 // Object 클래스 - clone() : shallow copy
 package ch15;
  
-// clone()은 인스턴스를 복제할 때 호출하는 메서드이다.
-
 public class Test13_1 {
   
-
-
   static class Engine implements Cloneable {
     int cc;
     int valve;

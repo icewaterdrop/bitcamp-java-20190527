@@ -26,12 +26,11 @@ public class Test02 {
     //       - notifyObserversOnStopped() : 옵저버에 통지
     //
     // 3) 특정 상태에 있을 때 작업을 수행하는 클래스를 정의한다.
-    //    => 상태가 바뀐 객체에서 규칙에 따라 옵저버의 메소드를  호출할 수 있도록 
+    //    => 상태가 바뀐 객체에서 규칙에 따라 옵저버의 메소드를 호출할 수 있도록 
     //       인터페이스를 구현한다.
     //    => CarObserver 인터페이스를 구현한 클래스 정의
     //    => 예) 자동차 안전벨트 점검 옵저버 => SafeBeltCarObserver
     //
-    System.out.println("------------------------------");
     
     // Car 클래스에 기능을 추가해보자!
     // => 옵저버 패턴을 적용하기 전에는 직접 Car 클래스에 코드를 추가하였다.
@@ -46,10 +45,10 @@ public class Test02 {
     
     // Car 객체를 사용하기 전에 먼저 옵저버를 등록한다.
     car.addObserver(new SafeBeltCarObserver());
+    
     car.start();
     car.run();
     car.stop();
-  
   }
 
 }

@@ -36,7 +36,7 @@ public class Test08 {
     // 레퍼런스 배열을 생성하면 모든 항목이 null로 초기화 된다.
     // 아직 레퍼런스 배열의 각 항목에 인스턴스 주소가 없는 상태이다.
     // 이런 상태에서 레퍼런스 배열에 있는 항목을 사용하려 하면 NullPointerException 오류가 발생한다! 
-    System.out.println(scores[0].name); // 실행 오류! (runtime exception 발생)'
+    //System.out.println(scores[0].name); // 실행 오류! (runtime exception 발생)'
     
     // 배열 레퍼런스에 인스턴스 주소를 넣은 다음에 사용하라.
     scores[0] = new Score();

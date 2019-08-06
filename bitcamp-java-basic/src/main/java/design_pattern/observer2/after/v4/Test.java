@@ -1,4 +1,4 @@
-// v4(유관순, 8월 15일에 추가함): mainClassName 값을 알아내기
+// v4(유관순, 8월15일에 추가함): mainClassName 값을 알아내기
 package design_pattern.observer2.after.v4;
 
 import java.io.FileReader;

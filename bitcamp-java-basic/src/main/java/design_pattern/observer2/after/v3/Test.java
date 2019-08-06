@@ -1,4 +1,4 @@
-// v3(임꺽정, 5월 17일에 추가함): 한줄 주석  세기
+// v3(임꺽정, 5월17일에 추가함): 한 줄 주석 세기
 package design_pattern.observer2.after.v3;
 
 import java.io.FileReader;
@@ -18,6 +18,7 @@ public class Test {
       
       LineCommentListener l3 = new LineCommentListener();
       analyzer.addCharacterListener(l3);
+      
       // 분석기를 실행한다.
       // => 분석기는 문자를 한 개 읽을 때 마다 분석기에 등록된 모든 리스너에게 보고할 것이다.
       // => 각각의 리스너는 보고를 받으면 자신의 일을 한다.

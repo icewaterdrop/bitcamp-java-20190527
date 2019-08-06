@@ -16,7 +16,6 @@ public class Test06 {
     car.start();
     car.run();
     car.stop();
-   
   }
 
 }

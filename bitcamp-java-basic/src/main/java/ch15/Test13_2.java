@@ -1,18 +1,8 @@
-// Object 클래스 - clone() : shallow copy
+// Object 클래스 - clone() : deep copy
 package ch15;
  
-// clone()은 인스턴스를 복제할 때 호출하는 메서드이다.
-
 public class Test13_2 {
   
-
-//인스턴스 복제 기능을 활성화하려면 Cloneable 인터페이스를 구현해야 한다.
- // => 이 인터페이스에는 메서드가 선언되어 있지 않다.
- // => 따라서 클래스는 따로 메서드를 구현할 필요가 없다.
- // => Cloneable을 구현하는 이유는 
- //    JVM에게 이 클래스의 인스턴스를 복제할 수 있음을 표시하기 위함이다.
- //    이 표시가 안된 클래스는 JVM이 인스턴스를 복제해 주지 않는다. 즉 clone()을 호출할 수 없다.
-
   static class Engine implements Cloneable {
     int cc;
     int valve;

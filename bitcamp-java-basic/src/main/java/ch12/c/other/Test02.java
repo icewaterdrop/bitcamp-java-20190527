@@ -18,8 +18,6 @@ public class Test02 {
     
     // public 접근 가능
     obj1.v4 = 100; // OK! 완전 공개이다.
-   
-
   }
 
 }

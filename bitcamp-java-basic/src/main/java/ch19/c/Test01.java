@@ -1,4 +1,4 @@
-// static nested class 사용전 : 상수를 다른 클래스로 분류하기
+// static nested class 사용 전 : 상수를 다른 클래스로 분류하기 
 package ch19.c;
 
 public class Test01 {
@@ -10,7 +10,6 @@ public class Test01 {
     p.price = 98000;
     
     // 상수를 Category 클래스로 옮긴 후에 사용하기 
-    p.category = Category.COMPUTER_MOUSE;
     p.category = Category.COMPUTER_MOUSE_BLUETOOTH;
     
     // 개선점:

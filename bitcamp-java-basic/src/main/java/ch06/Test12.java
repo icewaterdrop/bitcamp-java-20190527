@@ -14,7 +14,7 @@ public class Test12 {
     result2 = sum1(result2, 5);
     System.out.println(result2);
     
-    System.out.println(sum2(15000));
+    System.out.println(sum2(18800));
     // 위의 알고리즘(결과를 내는 방식)은 다음 수학 공식과 같다.
     // sum(n) = n + sum(n-1)
   }
@@ -23,10 +23,8 @@ public class Test12 {
     return a + b;
   }
   
-  static long sum2(int
-      n) {
+  static int sum2(int n) {
     if (n == 1)
-      
       return n;
     
     // 재귀 호출!

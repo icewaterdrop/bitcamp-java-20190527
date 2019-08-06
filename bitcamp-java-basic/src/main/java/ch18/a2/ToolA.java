@@ -10,12 +10,21 @@ public class ToolA implements Spec {
   // 구현하지 않으면 추상 메서드를 그대로 갖고 있는 것이 된다.
   // 추상 메서드를 갖고 있는 클래스는 추상 클래스만이 가능하다.
   
-  // => 인터페이스에 선언된 메서드가 public이기 때문에 이 메서드를 구현하는 클래스에서는 
-  // public 보다 낮은 접근을 지정할 수 없다. 
-  // 즉 무조건 public 메서드이다.
+  // => 인터페이스에 선언된 메서드가 public 이기 때문에 이 메서드를 구현하는 클래스에서는 
+  //    public 보다 낮은 접근을 지정할 수 없다.
+  //    즉 무조건 public 메서드이다.
   //
   @Override
   public void m1() {
     System.out.println("ToolA.m1()");
   }
 }
+
+
+
+
+
+
+
+
+

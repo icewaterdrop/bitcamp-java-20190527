@@ -15,7 +15,7 @@ public class Test3_2 {
     //    score3.data 파일을 읽어보라.
     //    단 servialVersionUID 값은 그대로 100이 되게 하라.
     // 
-    FileInputStream in0 = new FileInputStream("temp/score3.data");
+    FileInputStream in0 = new FileInputStream("temp/score.data");
     ObjectInputStream in = new ObjectInputStream(in0);
 
     Score3 score = (Score3) in.readObject();

@@ -1,14 +1,14 @@
 // 인스턴스 출력 - Serialize
 package ch22.f;
 
-import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 
 public class Test1_1 {
 
   public static void main(String[] args) throws Exception {
-    FileOutputStream out0 = new FileOutputStream("temp/score.data");   
+
+    FileOutputStream out0 = new FileOutputStream("temp/score.data");
     ObjectOutputStream out = new ObjectOutputStream(out0);
 
     // 인스턴스 출력하기
@@ -30,6 +30,7 @@ public class Test1_1 {
     // writeObject()를 사용할 수 없다.
 
     out.close();
+
   }
 
 }

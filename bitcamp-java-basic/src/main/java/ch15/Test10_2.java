@@ -1,11 +1,11 @@
-// hash code 응용 III - key 로 String을 사용하기
+// hash code 응용 III - String을 key로 사용하기
 package ch15;
 
 import java.util.HashMap;
 
 public class Test10_2 {
   public static void main(String[] args) {
-    HashMap<String, Student> map = new HashMap();
+    HashMap<String,Student> map = new HashMap<>();
     
     String k1 = new String("ok");
     String k2 = new String("no");
@@ -26,9 +26,8 @@ public class Test10_2 {
     // k3랑 같은 문자열을 갖는 String key를 생성한다.
     String k6 = new String("haha");
 
-    
-    //k3랑 k6는 서로 다른 인스턴스이다.
-    System.out.println(k3 == k6); // 
+    // k3랑 k6는 서로 다른 인스턴스이다.
+    System.out.println(k3 == k6); 
     
     // 그러나 문자열은 같다.
     // String은 같은 문자열일 경우 같은 해시코드를 리턴하도록 메서드를 오버라이딩 하였다.

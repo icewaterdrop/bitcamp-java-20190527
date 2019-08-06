@@ -9,7 +9,6 @@ public class Product {
   public static final int COMPUTER_MONITOR = 103;
   public static final int COMPUTER_CPU = 104;
   public static final int COMPUTER_RAM = 105;
-  
   public static final int COMPUTER_VGA = 106;
   
   public static final int APPLIANCE_TV = 201;
@@ -28,3 +27,7 @@ public class Product {
   int price;
   int category;
 }
+
+
+
+

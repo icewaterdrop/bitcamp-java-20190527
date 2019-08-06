@@ -7,6 +7,4 @@ public class SafeBeltCarObserver implements CarObserver {
     System.out.println("안전벨트 착용 여부 검사");
     
   }
-
-  
 }

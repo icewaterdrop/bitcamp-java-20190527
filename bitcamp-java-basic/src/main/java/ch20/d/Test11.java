@@ -76,7 +76,8 @@ public class Test11 {
     System.out.println(map.get(k2));
     System.out.println(map.get(k3));
 
-    System.out.println("---------------------------------");
+    System.out.println("--------------------------");
+
     Key k4 = new Key(100, 2);
     System.out.println(map.get(k4));
 

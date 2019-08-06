@@ -10,7 +10,7 @@ public class Test02 {
   // 1) static nested class 
   // => 바깥 클래스의 특정 인스턴스에 종속되지 않는 클래스.
   static class A {} // ex) Test02.A obj = new Test02.A();
-
+  
   // => 다른 스태틱 멤버
   static int a; // ex) Test02.a = 100;
   static void f1() {} // ex) Test02.f1();

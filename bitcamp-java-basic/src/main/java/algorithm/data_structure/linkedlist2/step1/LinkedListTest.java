@@ -15,7 +15,7 @@ public class LinkedListTest {
     list.set(2, "xxx"); // "ccc" -> "xxx"
     
     list.remove(3); // "ddd" 삭제
-    list.remove(0); // "aaa" 삭제 
+    list.remove(0); // "aaa" 삭제
     list.remove(4); // "ggg" 삭제
     list.remove(0); // "bbb" 삭제
     list.remove(0); // "xxx" 삭제
@@ -27,14 +27,11 @@ public class LinkedListTest {
     list.add("hul");
     
     //list.clear();
-//    for (int i = 0; i < list.size(); i++) {
-//      Object value = list.get(i);
-//      System.out.println(value);
-    Object[] arr =list.toArray();
+    
+    Object[] arr = list.toArray();
     for (Object obj : arr) {
       System.out.println(obj);
     }
-    
-    
   }
+
 }

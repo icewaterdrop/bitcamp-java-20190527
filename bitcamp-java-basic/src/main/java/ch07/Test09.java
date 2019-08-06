@@ -4,7 +4,7 @@ package ch07;
 // 패키지 멤버 클래스 
 // => 단독으로 선언하는 클래스이다.
 // => 물론 이 예제처럼 한 파일에 여러 개의 클래스를 선언할 수 있지만, 
-//    보통은 한 파일에 한 클래스를 선언한다.
+//    보통은 한 파일에 한 클래스를 선얺나다.
 // => 패키지 멤버 클래스는 접근 권한이 있다면 누구든 사용할 수 있다.
 //
 class Score1 {
@@ -100,6 +100,24 @@ public class Test09 {
     // 다른 메서드에 정의된 로컬 클래스도 사용할 수 없다.
     //Score4 s4 = new Score4(); // 컴파일 오류!
     
+  }
+  
+  static void m3() {
+    // 로컬 클래스(local class)
+    // => 특정 메서드 안에서만 사용되는 클래스인 경우 로컬 클래스로 정의한다.
+    //
+    class Score4 {
+      String name; 
+      int kor;
+      int eng;
+      int math;
+      int sum;
+      float aver;
+    }
+    
+    class Score5 {
+      
+    }
   }
 }
 

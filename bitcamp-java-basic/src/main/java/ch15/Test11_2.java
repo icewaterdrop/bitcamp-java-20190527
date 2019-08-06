@@ -29,8 +29,12 @@ public class Test11_2 {
     System.out.println(new long[10].getClass().getName()); //[J
     System.out.println(new char[10].getClass().getName()); //[C
     System.out.println(new boolean[10].getClass().getName()); //[Z
-    
   }
 }
+
+
+
+
+
 
 

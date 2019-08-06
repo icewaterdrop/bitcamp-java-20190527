@@ -14,28 +14,28 @@ class My2 {
   int age;
   String userType;
 }
-
+ 
 public class Test02 {
   public static void main(String[] args) {
     
-    Scanner keyScan= new Scanner(System.in);
-    
-    // 클래스에 대해 래퍼런스 변수를 만들 때는 클래스를 로딩하지 않는다.
+    // 클래스에 대해 레퍼런스 변수를 만들 때는 클래스를 로딩하지 않는다.
     My2 temp;
     
-    System.out.println(">");
-    keyScan.nextLine(); // 사용자가 입력한 값 중에서 Line Feed(LF; 0x0A) 코드를 
-                        // 읽을 때까지 리턴하지 않는다.
-    // 다음과 같이 My2클래스를 사용하는 시점에
+    Scanner keyScan = new Scanner(System.in);
+    System.out.println("> ");
+    keyScan.nextLine();  // 사용자가 입력한 값 중에서 Line Feed(LF; 0x0A) 코드를 
+                         // 읽을 때까지 리턴하지 않는다.
+    
+    // 다음과 같이 My2 클래스를 사용하는 시점에 
     // My2.class 파일을 Method Area 영역에 로딩한다.
     // 이것을 테스트하려면 이 클래스를 실행하기 전에 My2.class 파일을 삭제하라.
-    // 그리고이 클래스를 실행하면 위의 코드를 실행 할때는 오류가 발생하지않는다.
+    // 그리고 이 클래스를 실행하면 위의 코드를 실행할 때는 오류가 발생하지 않는다.
     // 그러나 아래의 코드를 실행할 때 My2.class 가 없다고 오류가 발생한다.
     System.out.println(My2.manager);
     System.out.println(My2.member);
     
     My2 obj = new My2();
-   
+    
     // 클래스 로딩 과정
     //      $ java ch08.Test02
     // 1) Test02.class 를 "Method Area 영역"에 로딩한다.

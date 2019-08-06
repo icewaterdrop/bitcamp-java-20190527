@@ -11,7 +11,6 @@ public class Test10 {
   static void m1(int value) {
     m2(++value);
     System.out.println(value);
-    
   }
   
   static void m2(int value) {

@@ -1,10 +1,10 @@
-// Object 클래스 - clone() 사용법 I
+// Object 클래스 - clone() 사용법 I 
 package ch15;
-
+ 
 // clone()은 인스턴스를 복제할 때 호출하는 메서드이다.
 
 public class Test12_1 {
-
+  
   static class Score {
     String name;
     int kor;
@@ -59,5 +59,10 @@ public class Test12_1 {
     // => Test12_2.java 를 살펴보라!
   }
 }
+
+
+
+
+
 
 
