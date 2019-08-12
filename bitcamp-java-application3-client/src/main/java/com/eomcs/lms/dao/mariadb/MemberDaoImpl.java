@@ -11,11 +11,15 @@ import com.eomcs.lms.domain.Member;
 
 public class MemberDaoImpl implements MemberDao {
 
+  
+  Connection con;
+  public MemberDaoImpl(Connection con) {
+    this.con = con;
+  }
+
   @Override
   public int insert(Member member) throws Exception {
-    try (Connection con = DriverManager.getConnection(
-        "jdbc:mariadb://localhost/bitcampdb?user=bitcamp&password=1111");
-        Statement stmt = con.createStatement()) {
+    try (Statement stmt = con.createStatement()) {
 
       return stmt.executeUpdate(
           "insert into lms_member(name,email,pwd,cdt,tel,photo)"
@@ -31,9 +35,7 @@ public class MemberDaoImpl implements MemberDao {
 
   @Override
   public List<Member> findAll() throws Exception {
-    try (Connection con = DriverManager.getConnection(
-        "jdbc:mariadb://localhost/bitcampdb?user=bitcamp&password=1111");
-        Statement stmt = con.createStatement();
+    try (Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(
             "select member_id,name,email,tel,cdt"
             + " from lms_member"
@@ -57,9 +59,7 @@ public class MemberDaoImpl implements MemberDao {
 
   @Override
   public Member findBy(int no) throws Exception {
-    try (Connection con = DriverManager.getConnection(
-        "jdbc:mariadb://localhost/bitcampdb?user=bitcamp&password=1111");
-        Statement stmt = con.createStatement();
+    try (Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery(
             "select *"
             + " from lms_member"
@@ -84,9 +84,7 @@ public class MemberDaoImpl implements MemberDao {
 
   @Override
   public int update(Member member) throws Exception {
-    try (Connection con = DriverManager.getConnection(
-        "jdbc:mariadb://localhost/bitcampdb?user=bitcamp&password=1111");
-        Statement stmt = con.createStatement()) {
+    try (Statement stmt = con.createStatement()) {
 
       return stmt.executeUpdate("update lms_member set"
           + " name='" + member.getName()
@@ -100,9 +98,7 @@ public class MemberDaoImpl implements MemberDao {
 
   @Override
   public int delete(int no) throws Exception {
-    try (Connection con = DriverManager.getConnection(
-        "jdbc:mariadb://localhost/bitcampdb?user=bitcamp&password=1111");
-        Statement stmt = con.createStatement()) {
+    try (Statement stmt = con.createStatement()) {
 
       return stmt.executeUpdate("delete from lms_member where member_id=" + no);
     }
