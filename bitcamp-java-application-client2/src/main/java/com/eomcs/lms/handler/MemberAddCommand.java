@@ -17,13 +17,11 @@ public class MemberAddCommand implements Command {
   @Override
   public void execute() {
     Member member = new Member();
-    member.setNo(input.getIntValue("번호? "));
     member.setName(input.getStringValue("이름? "));
     member.setEmail(input.getStringValue("이메일? "));
     member.setPassword(input.getStringValue("암호? "));
     member.setPhoto(input.getStringValue("사진? "));
     member.setTel(input.getStringValue("전화? "));
-    member.setRegisteredDate(new Date(System.currentTimeMillis())); 
   
     try {
       memberDao.insert(member);

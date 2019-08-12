@@ -19,8 +19,11 @@ public class BoardDeleteCommand implements Command {
     int no = input.getIntValue("번호? ");
 
     try {
-      boardDao.delete(no);
+      if (boardDao.delete(no) > 0) {
       System.out.println("데이터를 삭제하였습니다.");
+      } else {
+        System.out.println("해당 데이터가 없습니다.");
+      }
       
     } catch (Exception e) {
       System.out.println("데이터 저장에 실패 했습니다!");
