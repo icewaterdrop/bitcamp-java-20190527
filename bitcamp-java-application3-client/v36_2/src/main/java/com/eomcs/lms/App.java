@@ -42,8 +42,7 @@ public class App {
 
     //Dao가 사용할 Connection 객체 준비하기
     Connection con = null;
-    try {
-      con = DriverManager.getConnection(
+    try {con = DriverManager.getConnection(
           "jdbc:mariadb://localhost/bitcampdb?user=bitcamp&password=1111");
     } catch (Exception e) {
       System.out.println("DBMS에 연결할  수 없습니다!");
