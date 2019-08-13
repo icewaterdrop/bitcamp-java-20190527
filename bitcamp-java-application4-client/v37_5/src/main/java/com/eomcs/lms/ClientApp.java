@@ -20,6 +20,7 @@ public class ClientApp {
 
   private void service() {
 
+
     keyboard = new Scanner(System.in);
 
     System.out.println("서버? ");
@@ -53,11 +54,11 @@ public class ClientApp {
       } else {
         request(command);
 
-
+        
         // 서버를 멈출 때는 상택밧을 처라할수  있도록 한번 더 요청을 본낸다.
         if (command.equals("serverstop")) 
           request(command);
-
+        
         if (command.equals("quit") || command.equals("serverstop")) 
           break; 
       }
@@ -76,55 +77,55 @@ public class ClientApp {
       receive(in, out);
 
 
-    } catch (Exception e) {
-      System.out.println("애플리케이션 서버와 통신 오류!");
-      e.printStackTrace();
+  } catch (Exception e) {
+    System.out.println("애플리케이션 서버와 통신 오류!");
+    e.printStackTrace();
+  }
+}
+
+
+private void send(String command, PrintStream out) throws Exception {
+  out.println(command);
+  out.flush();
+}
+
+
+private void receive(BufferedReader in, PrintStream out) throws Exception {
+
+  while (true) {
+    String response = in.readLine();
+    if (response.equals("!end!")) {
+      break;
+    } else if (response.equals("!{}!")) {  
+      send(keyboard.nextLine(), out);
+    } else {
+      System.out.println(response);
     }
   }
+}
 
-
-  private void send(String command, PrintStream out) throws Exception {
-    out.println(command);
-    out.flush();
-  }
-
-
-  private void receive(BufferedReader in, PrintStream out) throws Exception {
-
-    while (true) {
-      String response = in.readLine();
-      if (response.equals("!end!")) {
+private void printCommandHistory(Iterable<String> list) {
+  Iterator<String> iterator = list.iterator();
+  int count = 0;
+  while (iterator.hasNext()) {
+    System.out.println(iterator.next());
+    if (++count % 5 == 0) {
+      System.out.print(":");
+      if (keyboard.nextLine().equalsIgnoreCase("q"))
         break;
-      } else if (response.equals("!{}!")) {  
-        send(keyboard.nextLine(), out);
-      } else {
-        System.out.println(response);
-      }
     }
   }
+}
 
-  private void printCommandHistory(Iterable<String> list) {
-    Iterator<String> iterator = list.iterator();
-    int count = 0;
-    while (iterator.hasNext()) {
-      System.out.println(iterator.next());
-      if (++count % 5 == 0) {
-        System.out.print(":");
-        if (keyboard.nextLine().equalsIgnoreCase("q"))
-          break;
-      }
-    }
-  }
+private String prompt() {
+  System.out.print("명령> ");
+  return keyboard.nextLine();
+}
 
-  private String prompt() {
-    System.out.print("명령> ");
-    return keyboard.nextLine();
-  }
-
-  public static void main(String[] args) {
-    ClientApp app = new ClientApp();
-    app.service();
-  }
+public static void main(String[] args) {
+  ClientApp app = new ClientApp();
+  app.service();
+}
 }
 
 

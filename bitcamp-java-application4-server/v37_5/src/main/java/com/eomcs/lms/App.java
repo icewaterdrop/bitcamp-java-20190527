@@ -1,4 +1,4 @@
-//  v37_6 : 스레드풀 적용하기.
+//  v37_5 : 한 요청 처리에 시간이 오래 걸릴경우 Stateless 통신 방식으로도 해결안됨 , 멀티스레드 적용하여 해결하기
 package com.eomcs.lms;
 
 import java.io.BufferedReader;
@@ -9,8 +9,6 @@ import java.net.Socket;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.HashMap;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import com.eomcs.lms.dao.BoardDao;
 import com.eomcs.lms.dao.LessonDao;
 import com.eomcs.lms.dao.MemberDao;
@@ -43,13 +41,11 @@ public class App {
   Connection con;
   HashMap<String,Command> commandMap = new HashMap<>();
   int state;
-  // 스레드 풀
-  ExecutorService executorService = Executors.newCachedThreadPool();
-
+  
   public App() throws Exception {
     // 처음에는 계속 클라이언트 요청을 처리해야하는 상태로 설정한다.
     state = CONTINUE;
-
+    
     try {
       //Dao가 사용할 Connection 객체 준비하기
       con = DriverManager.getConnection(
@@ -87,7 +83,6 @@ public class App {
     }
 
   }
-  @SuppressWarnings("static-access")
   private void service() {
 
 
@@ -95,25 +90,13 @@ public class App {
       System.out.println("애플리케이션 서버가 시작되었음!");
 
       while (true) {
-        //클라이언트가 접속하면 작업을 수헹할 Runnable 객체를 만들어 스레드 풀에 맡긴다.
-        executorService.submit(new CommandProcessor(serverSocket.accept()));
-
-
+        // 클라이언트가 접속하면 별도의 스레드를 생성하여 처리를 맡긴다.
+        new Thread(new CommandProcessor(serverSocket.accept())).start();
+        
         // 한 클라이언트가 serverstop 명령을 보내면 종료 상태로 설정되고 
         // 다음 요청을 처리할 때 즉시 실행을 멈춘다.
         if (state == STOP)
           break;
-      }
-
-      // 스레드풀에게  실행을 종료를 요청한다.
-      // => 스레드풀은 자신이 관리하는 스레드들이 실행이 종료되었는지 감시한다. 
-      executorService.shutdown();
-     
-      // 스레드풀이 관리하는 모든 스레드가 종료 되었는지 매 0.5초마다 검사한다.
-      // => 스레드풀의 모든 스레드가 실행을 종료했으면 즉시 main 스레드를 종료한다.
-      
-      while (!executorService.isTerminated()) {
-        Thread.currentThread().sleep(500);
       }
 
       System.out.println(" 애플리케이션 서버를 종료함!");
@@ -130,15 +113,15 @@ public class App {
       // 연결 끊을 때 발생되는 예외는 무시한다.
     }
   } 
-
+  
   class CommandProcessor implements Runnable {
 
     Socket socket;
-
+    
     public CommandProcessor(Socket socket) {
-      this.socket = socket;
+    this.socket = socket;
     }
-
+    
     @Override
     public void run() {
 
@@ -156,7 +139,7 @@ public class App {
         } else if (request.equals("serverstop")) {
           state = STOP;
           out.println("Good bye");
-
+          
         } else {
           // non -static 중첩 클래스는 바깥 클래스의 인스턴스 멤버를 사용 할 수 있다.
           Command command = commandMap.get(request);
@@ -175,11 +158,11 @@ public class App {
       }
     }
   }
+    
+  
+  
 
-
-
-
-
+  
   public static void main(String[] args) {
     try {
       App app = new App();
