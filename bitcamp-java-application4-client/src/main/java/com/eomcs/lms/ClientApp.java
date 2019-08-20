@@ -34,8 +34,6 @@ public class ClientApp {
     // 애플리케이션 서버에 연결한다.
 
 
-
-
     while (true) {
       String command = prompt();
       if (command.length() == 0)
@@ -54,7 +52,7 @@ public class ClientApp {
         request(command);
 
 
-        // 서버를 멈출 때는 상택밧을 처라할수  있도록 한번 더 요청을 본낸다.
+        // 서버를 멈출 때는 상태값을 처리할수  있도록 한번 더 요청을 보낸다.
         if (command.equals("serverstop")) 
           request(command);
 

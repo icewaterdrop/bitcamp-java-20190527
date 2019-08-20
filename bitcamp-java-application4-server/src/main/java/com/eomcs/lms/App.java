@@ -36,13 +36,14 @@ import com.eomcs.lms.handler.MemberSearchCommand;
 import com.eomcs.lms.handler.MemberUpdateCommand;
 
 public class App {
-
+  
   private static final int CONTINUE = 1;
   private static final int STOP = 0;
 
   Connection con;
   HashMap<String,Command> commandMap = new HashMap<>();
   int state;
+  
   // 스레드 풀
   ExecutorService executorService = Executors.newCachedThreadPool();
 
@@ -60,7 +61,7 @@ public class App {
       BoardDao boardDao = new BoardDaoImpl(con);
       MemberDao memberDao = new MemberDaoImpl(con);
       LessonDao lessonDao = new LessonDaoImpl(con);
-
+      
       // 클라이언트의 명령을 처리할 커맨드 객체를 준비한다.
       commandMap.put("/lesson/add", new LessonAddCommand(lessonDao));
       commandMap.put("/lesson/delete", new LessonDeleteCommand(lessonDao));
@@ -97,8 +98,7 @@ public class App {
       while (true) {
         //클라이언트가 접속하면 작업을 수헹할 Runnable 객체를 만들어 스레드 풀에 맡긴다.
         executorService.submit(new CommandProcessor(serverSocket.accept()));
-
-
+        
         // 한 클라이언트가 serverstop 명령을 보내면 종료 상태로 설정되고 
         // 다음 요청을 처리할 때 즉시 실행을 멈춘다.
         if (state == STOP)
