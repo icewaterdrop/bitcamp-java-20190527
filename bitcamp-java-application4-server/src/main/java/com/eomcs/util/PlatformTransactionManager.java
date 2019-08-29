@@ -14,7 +14,7 @@ public class PlatformTransactionManager {
   }
   
   public void beginTransaction() throws Exception {
-    // 여기에서 스레드가 사용할 SqlSessino 객체를 미리 준비한다.
+    // 여기에서 스레드가 사용할 SqlSession 객체를 미리 준비한다.
     ((SqlSessionFactoryProxy)sqlSessionFactory).prepareSessionInThread();
   }
   

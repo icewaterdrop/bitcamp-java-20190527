@@ -33,6 +33,7 @@ public class SqlSessionFactoryProxy implements SqlSessionFactory{
     localSqlSession.remove();
   }
 
+  
   public void prepareSessionInThread() {
     SqlSession sqlSession = localSqlSession.get();
     if (sqlSession != null) // 이미 스레드에 보관되어 있다면 무시한다.

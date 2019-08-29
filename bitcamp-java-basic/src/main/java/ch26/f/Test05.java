@@ -12,6 +12,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 public class Test05 {
 
+  
   public static void main(String[] args) throws Exception {
     
     InputStream inputStream = Resources.getResourceAsStream(

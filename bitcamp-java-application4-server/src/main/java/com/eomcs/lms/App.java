@@ -1,4 +1,4 @@
-// v43_2 : Mybatis 도입하기 + 도메인 클래스 별명적용 +SQL매퍼에 resulMap 적용
+// v44_1 : Mybatis의 dynamic sql 사용하기 
 package com.eomcs.lms;
 
 import java.io.BufferedReader;
@@ -109,7 +109,7 @@ public class App {
       commandMap.put("/photoboard/delete", 
           new PhotoBoardDeleteCommand(txManager, photoBoardDao, photoFileDao));
       commandMap.put("/photoboard/detail", 
-          new PhotoBoardDetailCommand(photoBoardDao, photoFileDao));
+          new PhotoBoardDetailCommand(photoBoardDao));
       commandMap.put("/photoboard/list", new PhotoBoardListCommand(photoBoardDao));
       commandMap.put("/photoboard/update", 
           new PhotoBoardUpdateCommand(txManager, photoBoardDao, photoFileDao));

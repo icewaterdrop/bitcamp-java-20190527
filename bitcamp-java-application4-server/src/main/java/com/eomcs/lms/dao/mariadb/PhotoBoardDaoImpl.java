@@ -2,16 +2,11 @@ package com.eomcs.lms.dao.mariadb;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import com.eomcs.lms.dao.PhotoBoardDao;
 import com.eomcs.lms.domain.PhotoBoard;
-import com.eomcs.util.DataSource;
 
 public class PhotoBoardDaoImpl implements PhotoBoardDao {
   SqlSessionFactory sqlSessionFactory;
@@ -38,6 +33,17 @@ public class PhotoBoardDaoImpl implements PhotoBoardDao {
   public PhotoBoard findBy(int no) throws Exception {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
       PhotoBoard board = sqlSession.selectOne("PhotoBoardDao.findBy", no);
+      if (board != null) {
+        sqlSession.update("PhotoBoardDao.increaseViewCount", no);
+      }
+      return board;
+    }
+  }
+  
+  @Override
+  public PhotoBoard findWithFilesBy(int no) throws Exception {
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      PhotoBoard board = sqlSession.selectOne("PhotoBoardDao.findWithFilesBy", no);
       if (board != null) {
         sqlSession.update("PhotoBoardDao.increaseViewCount", no);
       }
