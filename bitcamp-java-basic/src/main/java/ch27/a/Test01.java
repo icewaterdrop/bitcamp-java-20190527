@@ -32,16 +32,18 @@ public class Test01 {
     Class<?> c1 = String.class; // 클래스의 static 변수인 class의 값을 사용할 수 있다.
     Class<?> c2 = s.getClass(); // 인스턴스로 알아낼 수 있다.
     Class<?> c3 = Class.forName("java.lang.String"); // 클래스 정보를 리턴하는 도구를 이용.
-    */
+     */
     //
     // 실제 작업을 수행하는 객체
     // => java.lang.reflect.InvocationHandler 인터페이스에 따라 동작하는 객체
     // => 즉 InvocationHandler 구현체
     // 
-    
+
     class MyHandler implements InvocationHandler {
       @Override
       public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+
+        System.out.println("invoke()... 호출 됨");
         // newProxyInstance()가 생성한 객체에 대해 메서드를 호출할 때마다 이 메서드가 호출된다.
         int a = (int) args[0]; // auto-unboxing => ((Integer)args[0]).intValue();
         int b = (int) args[1]; // auto-unboxing => ((Integer)args[1]).intValue();
@@ -62,7 +64,9 @@ public class Test01 {
         new Class[] {Calculator.class}, 
         new MyHandler());
 
+    System.out.println("++++");    
     System.out.println(c1.plus(10, 20));
+    System.out.println("-----");
     System.out.println(c1.minus(10, 20));
   }
 
