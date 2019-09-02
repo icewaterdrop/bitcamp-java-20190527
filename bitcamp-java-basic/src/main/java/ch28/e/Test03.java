@@ -6,6 +6,7 @@
 // 
 package ch28.e;
 
+
 public class Test03 {
   
   @MyAnnotation6(value={"aaa"}) // 배열의 값을 지정할 때는 중괄호로 감싼다. 
