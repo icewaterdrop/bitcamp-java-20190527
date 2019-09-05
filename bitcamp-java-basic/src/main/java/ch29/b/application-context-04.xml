@@ -13,6 +13,8 @@
        => @Component 애노테이션으로 빈을 생성할 때는 
           빈의 기본 이름이 "클래스명"이다. 단 첫 번째 알파벳은 소문자이다. 
   -->
+  
+
   <bean class="ch29.b.Car"/> <!-- 이름="ch29.b.Car#0" 별명="ch29.b.Car" -->
   <bean class="ch29.b.Car"/> <!-- 이름="ch29.b.Car#1" -->
   <bean class="ch29.b.Car"/> <!-- 이름="ch29.b.Car#2" -->

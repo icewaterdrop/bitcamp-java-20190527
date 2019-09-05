@@ -13,6 +13,7 @@
       <map>
         <entry key="java.util.Date" value="ch29.g.MyCustomDateEditor"/>
         <entry key="ch29.g.BlackBox" value="ch29.g.MyCustomBlackBoxEditor"/>
+        
       </map>
     </property>
   </bean>  

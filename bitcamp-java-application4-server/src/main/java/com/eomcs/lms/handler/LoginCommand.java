@@ -4,10 +4,10 @@ import java.io.BufferedReader;
 import java.io.PrintStream;
 import java.util.HashMap;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestMapping;
 import com.eomcs.lms.dao.MemberDao;
 import com.eomcs.lms.domain.Member;
 import com.eomcs.util.Input;
-import com.eomcs.util.RequestMapping;
 
 
 @Component

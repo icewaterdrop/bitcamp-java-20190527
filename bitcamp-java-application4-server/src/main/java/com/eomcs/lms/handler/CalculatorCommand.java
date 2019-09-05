@@ -3,8 +3,8 @@ package com.eomcs.lms.handler;
 import java.io.BufferedReader;
 import java.io.PrintStream;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestMapping;
 import com.eomcs.util.Input;
-import com.eomcs.util.RequestMapping;
 
 
 @Component

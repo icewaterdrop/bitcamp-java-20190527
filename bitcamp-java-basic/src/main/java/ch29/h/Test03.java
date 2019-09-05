@@ -3,6 +3,7 @@ package ch29.h;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import ch29.SpringUtils;
 
 public class Test03 {
   public static void main(String[] args) {
@@ -10,6 +11,9 @@ public class Test03 {
         new ClassPathXmlApplicationContext("ch29/h/application-context-03.xml");
     
     System.out.println("---------------------------------------");
+    SpringUtils.printObjects(iocContainer);
+    System.out.println("---------------------------------------");
+    
     
     System.out.println(iocContainer.getBean("c1"));
     System.out.println(iocContainer.getBean("c2"));
