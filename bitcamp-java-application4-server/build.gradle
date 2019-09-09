@@ -51,7 +51,6 @@ dependencies {
    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.9'
    
    // Servlet API
-   // https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api
    providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
    
    
