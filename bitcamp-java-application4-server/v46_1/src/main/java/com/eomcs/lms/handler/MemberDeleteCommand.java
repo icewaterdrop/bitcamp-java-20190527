@@ -11,10 +11,12 @@ public class MemberDeleteCommand implements Command {
   public MemberDeleteCommand(MemberDao memberDao) {
     this.memberDao = memberDao;
   }
+
   public String getCommandName() {
     return "/member/delete";
   }
-
+  
+  
   @Override
   public void execute(BufferedReader in, PrintStream out) {
     try {

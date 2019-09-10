@@ -1,4 +1,4 @@
-// v39_1 : DB 커넥션 관리자 도입
+// v39_1 : DB 커넥션 관리자 도입 
 package com.eomcs.lms;
 
 import java.io.BufferedReader;
@@ -6,8 +6,6 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.util.HashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -63,21 +61,19 @@ public class App {
     
     try {
       // 커넥션 관리자를 준비한다.
-      ConnectionFactory conFactory = new ConnectionFactory("org.mariadb.jdbc.Driver", 
-          "jdbc:mariadb://localhost/bitcampdb?user=bitcamp&password=1111",
-          "bitcamp", 
-          "1111");      
-      
+      ConnectionFactory conFactory = new ConnectionFactory(
+          "org.mariadb.jdbc.Driver",
+          "jdbc:mariadb://localhost/bitcampdb",
+          "bitcamp",
+          "1111");
 
       // Command 객체가 사용할 데이터 처리 객체를 준비한다.
       BoardDao boardDao = new BoardDaoImpl(conFactory);
       MemberDao memberDao = new MemberDaoImpl(conFactory);
       LessonDao lessonDao = new LessonDaoImpl(conFactory);
       PhotoBoardDao photoBoardDao = new PhotoBoardDaoImpl(conFactory);
-      PhotoFileDao photoFileDao = new PhotoFileDaoImpl(conFactory); 
-        
+      PhotoFileDao photoFileDao = new PhotoFileDaoImpl(conFactory);
 
-      
       // 클라이언트 명령을 처리할 커맨드 객체를 준비한다.
       commandMap.put("/lesson/add", new LessonAddCommand(lessonDao));
       commandMap.put("/lesson/delete", new LessonDeleteCommand(lessonDao));
@@ -100,10 +96,13 @@ public class App {
 
       commandMap.put("/photoboard/add", 
           new PhotoBoardAddCommand(photoBoardDao, photoFileDao));
-      commandMap.put("/photoboard/delete", new PhotoBoardDeleteCommand(photoBoardDao, photoFileDao));
-      commandMap.put("/photoboard/detail", new PhotoBoardDetailCommand(photoBoardDao, photoFileDao));
+      commandMap.put("/photoboard/delete", 
+          new PhotoBoardDeleteCommand(photoBoardDao, photoFileDao));
+      commandMap.put("/photoboard/detail", 
+          new PhotoBoardDetailCommand(photoBoardDao, photoFileDao));
       commandMap.put("/photoboard/list", new PhotoBoardListCommand(photoBoardDao));
-      commandMap.put("/photoboard/update", new PhotoBoardUpdateCommand(photoBoardDao, photoFileDao));
+      commandMap.put("/photoboard/update", 
+          new PhotoBoardUpdateCommand(photoBoardDao, photoFileDao));
       
     } catch (Exception e) {
       System.out.println("DBMS에 연결할 수 없습니다!");
@@ -176,7 +175,6 @@ public class App {
           // non-static 중첩 클래스는 바깥 클래스의 인스턴스 멤버를 사용할 수 있다.
           Command command = commandMap.get(request);
           if (command == null) {
-            
             out.println("해당 명령을 처리할 수 없습니다.");
           } else {
             command.execute(in, out);

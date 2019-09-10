@@ -2,7 +2,6 @@ package com.eomcs.lms.handler;
 
 import java.io.BufferedReader;
 import java.io.PrintStream;
-import java.util.HashMap;
 import com.eomcs.lms.dao.MemberDao;
 import com.eomcs.lms.domain.Member;
 import com.eomcs.util.Input;
@@ -17,6 +16,7 @@ public class MemberUpdateCommand implements Command {
   public String getCommandName() {
     return "/member/update";
   }
+  
   @Override
   public void execute(BufferedReader in, PrintStream out) {
     try {

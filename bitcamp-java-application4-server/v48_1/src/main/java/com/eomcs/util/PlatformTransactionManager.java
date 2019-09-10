@@ -3,7 +3,6 @@ package com.eomcs.util;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
-
 // Mybatis의 SqlSessionFactory 객체를 사용하여 트랜잭션을 관리하는 일을 한다. 
 public class PlatformTransactionManager {
   
@@ -23,7 +22,7 @@ public class PlatformTransactionManager {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     sqlSession.commit();
     ((SqlSessionProxy)sqlSession).realClose();
-    }
+  }
   
   public void rollback() throws Exception {
     // 현재 스레드의 주머니에서 SqlSession을 꺼낸다.

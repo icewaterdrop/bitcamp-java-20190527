@@ -1,7 +1,6 @@
 package com.eomcs.lms.dao.mariadb;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -11,12 +10,12 @@ import com.eomcs.lms.domain.Member;
 
 public class MemberDaoImpl implements MemberDao {
 
-  
   Connection con;
+  
   public MemberDaoImpl(Connection con) {
     this.con = con;
   }
-
+  
   @Override
   public int insert(Member member) throws Exception {
     try (Statement stmt = con.createStatement()) {

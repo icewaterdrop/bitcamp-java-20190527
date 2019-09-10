@@ -4,57 +4,52 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="LessonDao">
   <select id="findAll" resultType="com.eomcs.lms.domain.Lesson">
-  select 
-    lesson_id no, /*setLesson_id(컬럼값)*/
-    titl title,
-    sdt startDate,
-    edt endDate,
-    tot_hr totalHours
-  from 
+    select 
+      lesson_id no,
+      titl title,
+      sdt startDate,
+      edt endDate,
+      tot_hr totalHours
+    from 
       lms_lesson
-  order by 
+    order by 
       sdt desc
   </select>
   
   <select id="findBy" 
-          parameterType="int"
+          parameterType="int" 
           resultType="com.eomcs.lms.domain.Lesson">
-  select 
-    lesson_id no,
-    titl title,
-    conts contents,
-    sdt startDate,
-    edt endDate,
-    tot_hr totalHours,
-    day_hr dayHours
-  from 
-    lms_lesson
-  where 
-    lesson_id=#{value}
+    select
+      lesson_id no,
+      titl title,
+      conts contents,
+      sdt startDate,
+      edt endDate,
+      tot_hr totalHours,
+      day_hr dayHours
+    from lms_lesson
+    where lesson_id=#{value}
   </select>
   
   <insert id="insert" parameterType="com.eomcs.lms.domain.Lesson">
-  insert into lms_lesson(sdt,edt,tot_hr,day_hr,titl,conts)
-          values(#{startDate},#{endDate},#{totalHours},#{dayHours},#{title},#{contents})
+    insert into lms_lesson(sdt,edt,tot_hr,day_hr,titl,conts)
+    values(#{startDate},#{endDate},#{totalHours},#{dayHours},#{title},#{contents})
   </insert>
   
   <update id="update" parameterType="com.eomcs.lms.domain.Lesson">
-  update lms_lesson set
-    titl=#{title}, 
-    conts=#{contents}, 
-    sdt=#{startDate},
-    edt=#{endDate},
-    tot_hr=#{totalHours},
-    day_hr=#{dayHours}
-  where lesson_id=#{no}
+    update lms_lesson set
+      titl=#{title}, 
+      conts=#{contents}, 
+      sdt=#{startDate}, 
+      edt=#{endDate}, 
+      tot_hr=#{totalHours}, 
+      day_hr=#{dayHours}
+    where lesson_id=#{no}
   </update>
   
   <delete id="delete" parameterType="int">
-  delete from lms_lesson 
-  where lesson_id=#{value}
+    delete from lms_lesson 
+    where lesson_id=#{value}
   </delete>
-  
-  
-  
-  
+
 </mapper>

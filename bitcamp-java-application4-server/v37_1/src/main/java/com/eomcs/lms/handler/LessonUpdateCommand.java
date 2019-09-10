@@ -19,6 +19,7 @@ public class LessonUpdateCommand implements Command {
     int no = input.getIntValue("번호? ");
 
     try {
+      // 사용자가 입력한 번호를 가지고 목록에서 그 번호에 해당하는 Lesson 객체를 찾는다.
       Lesson lesson = lessonDao.findBy(no);
       if (lesson == null) {
         System.out.println("해당 번호의 데이터가 없습니다!");
@@ -50,11 +51,13 @@ public class LessonUpdateCommand implements Command {
 
       lessonDao.update(lesson);
       System.out.println("데이터를 변경하였습니다.");
+
     } catch (Exception e) {
-      System.out.println("수업정보 변경에 실패 했습니다!");
+      System.out.println("데이터 변경에 실패했습니다!");
       System.out.println(e.getMessage());
     }
   }
+
 }
 
 

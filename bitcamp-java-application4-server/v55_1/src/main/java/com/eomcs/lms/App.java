@@ -35,11 +35,12 @@ public class App implements Servlet {
 
   @Override
   public void init(ServletConfig config) throws ServletException {
-
+    
     this.config = config;
-    // 톰캣 서버가 이 객체를 사용하기 전에
-    // 이객체가 작업을 수행하는데 필요한 자원들을
-    // 준비할 수 있도록 이 메서드를 호출한다.
+    
+    // 톰캣 서버가 이 객체를 사용하기 전에 
+    // 이 객체가 작업을 수행하는데 필요한 자원들을 
+    // 준비할 수 있도록 이 메서드를 호출한다. 
     appCtx = new AnnotationConfigApplicationContext(AppConfig.class);
 
     // Spring IoC 컨테이너에 들어 있는(Spring IoC 컨테이너가 생성한) 객체 알아내기
@@ -54,77 +55,73 @@ public class App implements Servlet {
 
     handlerMapping = createRequestMappingHandlerMapping();
   }
-
+  
   @Override
   public void service(
       javax.servlet.ServletRequest request, 
       javax.servlet.ServletResponse response)
       throws ServletException, IOException {
-    // 클라이언트가 요청한 정보를 자세하게 뽑기위해 파라미터 객체를 원래의 타입으로 형변환 한다.
+    
+    // 클라이언트가 요청한 정보를 자세하게 뽑기 위해 파라미터 객체를 원래의 타입으로 형변환 한다.
     HttpServletRequest httpReq = (HttpServletRequest) request;
     String command = httpReq.getPathInfo();
     logger.info(command);
-      logger.info(httpReq.getQueryString());
-
+    logger.info(httpReq.getQueryString());
+    
     try {
       RequestHandler requestHandler = 
           handlerMapping.getRequestHandler(command);
 
-       response.setContentType("text/html;charset=UTF-8");
+      response.setContentType("text/html;charset=UTF-8");
       
       if (requestHandler != null) {
         // 클라이언트 요청을 처리하기 위해 메서드를 호출한다.
         requestHandler.method.invoke(requestHandler.bean, 
             request, response);
-
       } else {
         PrintWriter out = response.getWriter();
-        out.println("<html><body>"
+        out.println(
+            "<html><body>"
             + "<h1>해당 명령을 처리할 커맨드를 찾을 수 없습니다.</h1>"
             + "</body></html>");
-        
         logger.info("실패! - " + command);
       }
 
     } catch (Exception e) {
       PrintWriter out = response.getWriter();
-      out.println(  
+      out.println(
           "<html><body>"
               + "<h1>요청 처리 중 오류 발생!</h1>"
               + "</body></html>");
-      
+
       logger.info("클라이언트 요청 처리 중 오류 발생!");
 
       StringWriter out2 = new StringWriter();
       e.printStackTrace(new PrintWriter(out2));
       logger.debug(out2.toString());
-
-
     }
   }
-
-
+  
   @Override
   public void destroy() {
-    // 톰캣 서버가 종료되기 전에  이 객체가 준비한 자원들을 해제할 수 있도록 이 메서드를 호출한다.
-
+    // 톰캣 서버가 종료되기 전에 이 객체가 준비한 자원들을 해제할 수 있도록 이 메서드를 호출한다.
+    
   }
-
+  
   @Override
   public String getServletInfo() {
-    // 톰캣 서버가 관리자 페이지에  애플리케이션에 대해 간단한 소개를 출력하기 위해 
+    // 톰캣 서버가 관리자 페이지에 애플리케이션에 대해 간단한 소개를 출력하기 위해 
     // 이 메서드를 호출한다. 즉 이 메서드의 리턴 값을 관리자 페이지에 출력한다.
     return "수업관리 시스템";
   }
-
+  
   @Override
   public ServletConfig getServletConfig() {
-    // 이 객체를 실행하면서 이 객체의 실핼 환경 정보를 알고 싶을 때 이 메서드를 호출한다.
-    // 리턴 값은 init()에서 받은 파라미터 값이다.
+    // 이 객체를 실행하면서 이 객체의 실행 환경 정보를 알고 싶을 때 이 메서드를 호출한다.
+    // 리턴 값은 init()에서 받은 파라미터 값이다. 
     // 따라서 init() 메서드에서 파라미터 값을 잘 보관해 둬야 한다.
     return this.config;
   }
-
 
   private RequestMappingHandlerMapping createRequestMappingHandlerMapping() {
 
@@ -171,7 +168,6 @@ public class App implements Servlet {
 
     return mapping;
   }
-
 
 }
 

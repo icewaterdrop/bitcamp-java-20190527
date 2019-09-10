@@ -26,10 +26,8 @@ public class PhotoBoardAddCommand {
     this.photoBoardDao = photoBoardDao;
     this.photoFileDao = photoFileDao;
   }
-  
 
-
-  @RequestMapping // 클라이언트 요청이 들어왔을 때 이 메서드를 호출하라고 표시한다.
+  @RequestMapping // 클라이언트 요청이 들어 왔을 때 이 메서드를 호출하라고 표시한다.
   public void execute(BufferedReader in, PrintStream out) {
     try {
       txManager.beginTransaction();

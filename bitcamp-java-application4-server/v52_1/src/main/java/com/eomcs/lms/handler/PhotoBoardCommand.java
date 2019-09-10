@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.PrintStream;
 import java.util.List;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.eomcs.lms.dao.PhotoBoardDao;
@@ -29,7 +28,6 @@ public class PhotoBoardCommand {
   @Transactional
   @RequestMapping("/photoboard/add") // 클라이언트 요청이 들어 왔을 때 이 메서드를 호출하라고 표시한다.
   public void add(BufferedReader in, PrintStream out) {
-
     try {
       PhotoBoard photoBoard = new PhotoBoard();
       photoBoard.setTitle(Input.getStringValue(in, out, "제목? "));
@@ -58,7 +56,6 @@ public class PhotoBoardCommand {
         photoFileDao.insert(photoFile);
         count++;
       }
-      
       out.println("저장하였습니다.");
       
     } catch (Exception e) {
@@ -89,7 +86,6 @@ public class PhotoBoardCommand {
       out.println("데이터를 삭제하였습니다.");
       
     } catch (Exception e) {
-      
       out.println("데이터 삭제에 실패했습니다!");
       System.out.println(e.getMessage());
       throw new RuntimeException(e);
@@ -214,7 +210,6 @@ public class PhotoBoardCommand {
       out.println("사진을 변경하였습니다.");
       
     } catch (Exception e) {
-      
       out.println("데이터 변경에 실패했습니다!");
       System.out.println(e.getMessage());
       throw new RuntimeException(e);

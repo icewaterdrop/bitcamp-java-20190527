@@ -79,16 +79,21 @@ public class App {
       PlatformTransactionManager txManager = 
           new PlatformTransactionManager(dataSource);
       
-      //Mybatis의 SQL 실행 도구 준비
-      // => Mybatis 설정 파일을 읽을 때 사용할 입력스트림 도구를 준바한다.
-      InputStream inputStream =
+      // Mybatis의 SQL 실행 도구 준비
+      // => Mybatis 설정 파일을 읽을 때 사용할 입력스트림 도구를 준비한다.
+      InputStream inputStream = 
           Resources.getResourceAsStream("com/eomcs/lms/conf/mybatis-config.xml");
-      // => SQL을 실행할 때 사용할 도구(SqlSession; 샌드위치)를 만들어주는 
-      //    생성기(SqlSessionFactory; 파리바게트) 공장(SqlSessionFactoryBuilder)를 준비한다.
       
+      // => SQL을 실행할 때 사용할 도구(SqlSession;샌드위치)를 만들어주는 
+      //    생성기(SqlSessionFactory;파리바게트) 공장(SqlSessionFactoryBuilder)를 준비한다.
+      //
+      /*
+      SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+      SqlSessionFactory factory = builder.build(inputStream);
+      SqlSession sqlSession = factory.openSession();
+      */
       SqlSessionFactory sqlSessionFactory =
         new SqlSessionFactoryBuilder().build(inputStream);
-      
       
       // Command 객체가 사용할 데이터 처리 객체를 준비한다.
       BoardDao boardDao = new BoardDaoImpl(sqlSessionFactory);

@@ -19,7 +19,6 @@ public class PhotoBoardDetailCommand implements Command {
       PhotoFileDao photoFileDao) {
     this.photoBoardDao = photoBoardDao;
     this.photoFileDao = photoFileDao;
-        
   }
   
   @Override

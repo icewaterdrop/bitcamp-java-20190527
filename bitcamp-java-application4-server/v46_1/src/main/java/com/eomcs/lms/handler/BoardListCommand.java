@@ -3,15 +3,13 @@ package com.eomcs.lms.handler;
 import java.io.BufferedReader;
 import java.io.PrintStream;
 import java.util.List;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
 import com.eomcs.lms.dao.BoardDao;
 import com.eomcs.lms.domain.Board;
 
 public class BoardListCommand implements Command {
   
   private BoardDao boardDao;
-
+  
   public BoardListCommand(BoardDao boardDao) {
     this.boardDao = boardDao;
   }
@@ -23,7 +21,6 @@ public class BoardListCommand implements Command {
   @Override
   public void execute(BufferedReader in, PrintStream out) {
     try {
-      
       List<Board> boards = boardDao.findAll();
       for (Board board : boards) {
         out.printf("%s, %s, %s, %s\n", 

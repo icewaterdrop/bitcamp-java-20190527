@@ -1,7 +1,6 @@
 package com.eomcs.lms.dao.mariadb;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -11,9 +10,8 @@ import com.eomcs.lms.domain.Board;
 
 public class BoardDaoImpl implements BoardDao {
 
-
-
   Connection con;
+  
   public BoardDaoImpl(Connection con) {
     this.con = con;
   }
@@ -35,14 +33,14 @@ public class BoardDaoImpl implements BoardDao {
             "select * from lms_board order by board_id desc")) {
 
       ArrayList<Board> list = new ArrayList<>();
-
+      
       while (rs.next()) {
         Board board = new Board();
         board.setNo(rs.getInt("board_id"));
         board.setContents(rs.getString("conts"));
         board.setCreatedDate(rs.getDate("cdt"));
         board.setViewCount(rs.getInt("vw_cnt"));
-
+        
         list.add(board);
       }
       return list;
@@ -61,13 +59,13 @@ public class BoardDaoImpl implements BoardDao {
         board.setContents(rs.getString("conts"));
         board.setCreatedDate(rs.getDate("cdt"));
         board.setViewCount(rs.getInt("vw_cnt"));
-
+        
         // 게시글을 찾았으면 조회수를 증가시킨다.
         stmt.executeUpdate("update lms_board set"
             + " vw_cnt=vw_cnt + 1 where board_id=" + no);
-
+        
         return board;
-
+        
       } else {
         return null;
       }

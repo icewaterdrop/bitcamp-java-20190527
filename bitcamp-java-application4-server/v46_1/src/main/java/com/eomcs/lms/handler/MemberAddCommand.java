@@ -16,6 +16,7 @@ public class MemberAddCommand implements Command {
   public String getCommandName() {
     return "/member/add";
   }
+  
   @Override
   public void execute(BufferedReader in, PrintStream out) {
     try {

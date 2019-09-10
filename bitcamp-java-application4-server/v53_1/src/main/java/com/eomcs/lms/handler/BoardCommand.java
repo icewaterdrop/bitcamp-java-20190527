@@ -9,18 +9,16 @@ import com.eomcs.lms.dao.BoardDao;
 import com.eomcs.lms.domain.Board;
 import com.eomcs.util.Input;
 
-
 @Component
-public class BoardCommand  {
+public class BoardCommand {
   
-private BoardDao boardDao;
-
+  private BoardDao boardDao;
+  
   public BoardCommand(BoardDao boardDao) {
     this.boardDao = boardDao;
   }
   
-
-  @RequestMapping("/board/add") // 클라이언트 요청이 들어왔을 때 이 메서드를 호출하라고 표시한다.
+  @RequestMapping("/board/add") // 클라이언트 요청이 들어 왔을 때 이 메서드를 호출하라고 표시한다.
   public void add(BufferedReader in, PrintStream out) {
     try {
       Board board = new Board();
@@ -34,12 +32,10 @@ private BoardDao boardDao;
       System.out.println(e.getMessage());
     }
   }
-
   
-  @RequestMapping("/board/delete") // 클라이언트 요청이 들어왔을 때 이 메서드를 호출하라고 표시한다.
+  @RequestMapping("/board/delete") // 클라이언트 요청이 들어 왔을 때 이 메서드를 호출하라고 표시한다.
   public void delete(BufferedReader in, PrintStream out) {
     try {
-    
       int no = Input.getIntValue(in, out, "번호? ");
       
       if (boardDao.delete(no) > 0) {
@@ -54,7 +50,7 @@ private BoardDao boardDao;
     }
   }
   
-  @RequestMapping("/board/detail") // 클라이언트 요청이 들어왔을 때 이 메서드를 호출하라고 표시한다.
+  @RequestMapping("/board/detail") // 클라이언트 요청이 들어 왔을 때 이 메서드를 호출하라고 표시한다.
   public void detail(BufferedReader in, PrintStream out) {
     try {
       // 클라이언트에게 번호를 요구하여 받는다.
@@ -76,11 +72,9 @@ private BoardDao boardDao;
     }
   }
   
-  
-  @RequestMapping("/board/list") // 클라이언트 요청이 들어왔을 때 이 메서드를 호출하라고 표시한다.
+  @RequestMapping("/board/list") // 클라이언트 요청이 들어 왔을 때 이 메서드를 호출하라고 표시한다.
   public void list(BufferedReader in, PrintStream out) {
     try {
-      
       List<Board> boards = boardDao.findAll();
       for (Board board : boards) {
         out.printf("%s, %s, %s, %s\n", 
@@ -93,10 +87,9 @@ private BoardDao boardDao;
       e.printStackTrace();
     }
   }
-  
-  @RequestMapping("/board/update") // 클라이언트 요청이 들어왔을 때 이 메서드를 호출하라고 표시한다.
+
+  @RequestMapping("/board/update") // 클라이언트 요청이 들어 왔을 때 이 메서드를 호출하라고 표시한다.
   public void update(BufferedReader in, PrintStream out) {
-    
     try {
       int no = Input.getIntValue(in, out, "번호? ");
       
@@ -121,7 +114,4 @@ private BoardDao boardDao;
       System.out.println(e.getMessage());
     }
   }
-  
-  
-  
 }

@@ -2,9 +2,7 @@ package com.eomcs.lms.handler;
 
 import java.io.BufferedReader;
 import java.io.PrintStream;
-import java.sql.SQLException;
 import java.util.List;
-import com.eomcs.lms.App;
 import com.eomcs.lms.dao.PhotoBoardDao;
 import com.eomcs.lms.dao.PhotoFileDao;
 import com.eomcs.lms.domain.PhotoBoard;
@@ -27,7 +25,6 @@ public class PhotoBoardUpdateCommand implements Command {
   public void execute(BufferedReader in, PrintStream out) {
 
     try {
-
       int no = Input.getIntValue(in, out, "번호? ");
 
       PhotoBoard photoBoard = photoBoardDao.findBy(no);
@@ -40,13 +37,12 @@ public class PhotoBoardUpdateCommand implements Command {
       String str = Input.getStringValue(in, out, 
           String.format("제목(%s)? ", photoBoard.getTitle()));
 
-      // 제목을 입력했으면 사진 게시글의 제목을 변경한다
-      if(str.length() > 0) {
+      // 제목을 입력했으면 사진 게시글의 제목을 변경한다.
+      if (str.length() > 0) {
         photoBoard.setTitle(str);
         photoBoardDao.update(photoBoard);
         out.println("게시물의 제목을 변경하였습니다.");
       }
-
 
       // 이전에 등록한 파일 목록을 출력한다.
       out.println("사진 파일:");
@@ -65,7 +61,7 @@ public class PhotoBoardUpdateCommand implements Command {
         out.println("파일 변경을 취소합니다.");
         return;
       }
-
+      
       // 기존 사진 파일을 삭제한다.
       photoFileDao.deleteAll(no);
 
@@ -75,12 +71,12 @@ public class PhotoBoardUpdateCommand implements Command {
 
       int count = 0;
       while (true) {
-        String filepath = Input.getStringValue(in, out, "사진 파일?");
+        String filepath = Input.getStringValue(in, out, "사진 파일? ");
         if (filepath.length() == 0) {
           if (count > 0) {
             break;
-          } else {
-            out.println("최소 한 개의 사진 파일을 등록 해야 합니다.");
+          } else { 
+            out.println("최소 한 개의 사진 파일을 등록해야 합니다.");
             continue;
           }
         }
@@ -91,14 +87,12 @@ public class PhotoBoardUpdateCommand implements Command {
         count++;
       }
 
-
       out.println("사진을 변경하였습니다.");
-
-    } catch (Exception e) {
       
-
+    } catch (Exception e) {
       out.println("데이터 변경에 실패했습니다!");
       System.out.println(e.getMessage());
+      
     }
   }
 

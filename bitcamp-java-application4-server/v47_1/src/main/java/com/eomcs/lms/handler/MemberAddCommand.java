@@ -15,7 +15,6 @@ public class MemberAddCommand implements Command {
     this.memberDao = memberDao;
   }
 
-
   @Override
   public void execute(BufferedReader in, PrintStream out) {
     try {

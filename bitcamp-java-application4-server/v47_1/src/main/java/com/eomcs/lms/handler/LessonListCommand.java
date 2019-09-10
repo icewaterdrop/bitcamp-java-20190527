@@ -16,7 +16,6 @@ public class LessonListCommand implements Command {
     this.lessonDao = lessonDao;
   }
 
-
   @Override
   public void execute(BufferedReader in, PrintStream out) {
     try {

@@ -2,26 +2,23 @@ package com.eomcs.lms.handler;
 
 import java.io.BufferedReader;
 import java.io.PrintStream;
-import java.util.List;
 import com.eomcs.lms.dao.MemberDao;
 import com.eomcs.lms.domain.Member;
 import com.eomcs.util.Input;
 
 public class MemberDetailCommand implements Command {
   private MemberDao memberDao;
-
+  
   public MemberDetailCommand(MemberDao memberDao) {
     this.memberDao = memberDao;
   }
 
   @Override
   public void execute(BufferedReader in, PrintStream out) {
-
     try {
       int no = Input.getIntValue(in, out, "번호? ");
       
       Member member = memberDao.findBy(no);
-
       if (member == null) {
         out.println("해당 번호의 데이터가 없습니다!");
         return;
@@ -32,9 +29,11 @@ public class MemberDetailCommand implements Command {
       out.printf("사진: %s\n", member.getPhoto());
       out.printf("전화: %s\n", member.getTel());
       out.printf("가입일: %s\n", member.getRegisteredDate());
+
     } catch (Exception e) {
-      out.println("회원정보 조회에 실패 했습니다!");
+      out.println("데이터 조회에 실패했습니다!");
       System.out.println(e.getMessage());
     }
   }
+
 }

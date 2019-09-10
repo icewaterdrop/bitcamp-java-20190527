@@ -2,7 +2,6 @@ package com.eomcs.lms.handler;
 
 import java.io.BufferedReader;
 import java.io.PrintStream;
-import java.sql.Date;
 import com.eomcs.lms.dao.MemberDao;
 import com.eomcs.lms.domain.Member;
 import com.eomcs.util.Input;
@@ -23,11 +22,12 @@ public class MemberAddCommand implements Command {
       member.setPassword(Input.getStringValue(in, out, "암호? "));
       member.setPhoto(Input.getStringValue(in, out, "사진? "));
       member.setTel(Input.getStringValue(in, out, "전화? "));
-
+      
       memberDao.insert(member);
       out.println("저장하였습니다.");
+      
     } catch (Exception e) {
-      out.println("회원목록 저장에 실패했습니다!");
+      out.println("데이터 저장에 실패했습니다!");
       System.out.println(e.getMessage());
     }
   }

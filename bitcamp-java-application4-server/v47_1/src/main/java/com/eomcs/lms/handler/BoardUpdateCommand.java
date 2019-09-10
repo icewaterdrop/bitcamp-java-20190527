@@ -2,8 +2,6 @@ package com.eomcs.lms.handler;
 
 import java.io.BufferedReader;
 import java.io.PrintStream;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
 import com.eomcs.lms.dao.BoardDao;
 import com.eomcs.lms.domain.Board;
 import com.eomcs.util.Component;
@@ -13,15 +11,13 @@ import com.eomcs.util.Input;
 public class BoardUpdateCommand implements Command {
   
   private BoardDao boardDao;
-
+  
   public BoardUpdateCommand(BoardDao boardDao) {
     this.boardDao = boardDao;
   }
 
- 
   @Override
   public void execute(BufferedReader in, PrintStream out) {
-    
     try {
       int no = Input.getIntValue(in, out, "번호? ");
       

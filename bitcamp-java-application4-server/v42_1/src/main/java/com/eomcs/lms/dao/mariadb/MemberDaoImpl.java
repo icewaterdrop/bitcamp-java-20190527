@@ -137,7 +137,6 @@ public class MemberDaoImpl implements MemberDao {
       return stmt.executeUpdate("delete from lms_member where member_id=" + no);
     }
   }
-
   
   @Override
   public Member findByEmailPassword(String email, String password) throws Exception {
@@ -146,9 +145,9 @@ public class MemberDaoImpl implements MemberDao {
         ResultSet rs = stmt.executeQuery(
             "select *"
             + " from lms_member"
-            + " where email='" + email
+            + " where email='" + email 
             + "' and pwd=password('" + password
-            + "')" )) {
+            + "')")) {
 
       if (rs.next()) {
         Member member = new Member();
@@ -166,5 +165,5 @@ public class MemberDaoImpl implements MemberDao {
       }
     }
   }
-  
+
 }

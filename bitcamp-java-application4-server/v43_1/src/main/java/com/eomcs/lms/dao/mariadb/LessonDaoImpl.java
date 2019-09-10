@@ -9,12 +9,11 @@ import com.eomcs.lms.domain.Lesson;
 public class LessonDaoImpl implements LessonDao {
 
   SqlSessionFactory sqlSessionFactory;
- 
-
+  
   public LessonDaoImpl(SqlSessionFactory sqlSessionFactory) {
     this.sqlSessionFactory = sqlSessionFactory;
   }
-
+  
   @Override
   public int insert(Lesson lesson) throws Exception {
     try (SqlSession sqlSession = sqlSessionFactory.openSession(true)) {

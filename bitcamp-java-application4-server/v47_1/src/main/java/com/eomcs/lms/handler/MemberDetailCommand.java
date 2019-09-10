@@ -7,7 +7,6 @@ import com.eomcs.lms.domain.Member;
 import com.eomcs.util.Component;
 import com.eomcs.util.Input;
 
-
 @Component("/member/detail")
 public class MemberDetailCommand implements Command {
   private MemberDao memberDao;

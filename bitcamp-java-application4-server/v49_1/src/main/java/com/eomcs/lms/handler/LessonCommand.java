@@ -18,8 +18,7 @@ public class LessonCommand {
     this.lessonDao = lessonDao;
   }
 
-
-  @RequestMapping("/lesson/add") // 클라이언트 요청이 들어왔을 때 이 메서드를 호출하라고 표시한다.
+  @RequestMapping("/lesson/add") // 클라이언트 요청이 들어 왔을 때 이 메서드를 호출하라고 표시한다.
   public void add(BufferedReader in, PrintStream out) {
     try {
       Lesson lesson = new Lesson();
@@ -39,8 +38,8 @@ public class LessonCommand {
       System.out.println(e.getMessage());
     }
   }
-
-  @RequestMapping("/lesson/delete") // 클라이언트 요청이 들어왔을 때 이 메서드를 호출하라고 표시한다.
+  
+  @RequestMapping("/lesson/delete") // 클라이언트 요청이 들어 왔을 때 이 메서드를 호출하라고 표시한다.
   public void delete(BufferedReader in, PrintStream out) {
     try {
 
@@ -57,8 +56,8 @@ public class LessonCommand {
       System.out.println(e.getMessage());
     }
   }
-  
-  @RequestMapping("/lesson/detail") // 클라이언트 요청이 들어왔을 때 이 메서드를 호출하라고 표시한다.
+
+  @RequestMapping("/lesson/detail") // 클라이언트 요청이 들어 왔을 때 이 메서드를 호출하라고 표시한다.
   public void detail(BufferedReader in, PrintStream out) {
     try {
       int no = Input.getIntValue(in, out, "번호? ");
@@ -81,7 +80,7 @@ public class LessonCommand {
     }
   }
   
-  @RequestMapping("/lesson/list") // 클라이언트 요청이 들어왔을 때 이 메서드를 호출하라고 표시한다.
+  @RequestMapping("/lesson/list") // 클라이언트 요청이 들어 왔을 때 이 메서드를 호출하라고 표시한다.
   public void list(BufferedReader in, PrintStream out) {
     try {
       List<Lesson> lessons = lessonDao.findAll();
@@ -97,7 +96,7 @@ public class LessonCommand {
     }
   }
   
-  @RequestMapping("/lesson/update") // 클라이언트 요청이 들어왔을 때 이 메서드를 호출하라고 표시한다.
+  @RequestMapping("/lesson/update") // 클라이언트 요청이 들어 왔을 때 이 메서드를 호출하라고 표시한다.
   public void update(BufferedReader in, PrintStream out) {
     try {
       int no = Input.getIntValue(in, out, "번호? ");
@@ -111,7 +110,7 @@ public class LessonCommand {
       // 사용자로부터 변경할 값을 입력 받는다.
       Lesson data = new Lesson();
       data.setNo(no);
-
+      
       String str = Input.getStringValue(in, out, "수업명(" + lesson.getTitle() + ")? ");
       if (str.length() > 0) {
         data.setTitle(str);
@@ -121,35 +120,37 @@ public class LessonCommand {
       if (str.length() > 0) {
         data.setContents(str);
       }
+      
       try {
         data.setStartDate(
-            Input.getDateValue(in, out, "시작일(" + lesson.getStartDate() + ")? "));
-      } catch(Exception e) {
-        //클라이언트가 보낸 날짜가 유효하지 않으면 무시
+          Input.getDateValue(in, out, "시작일(" + lesson.getStartDate() + ")? "));
+      } catch (Exception e) {
+        // 클라이언트가 보낸 날짜가 유효하지 않으면 무시
       }
-
+      
       try {
         data.setEndDate(
-            Input.getDateValue(in, out, "종료일(" + lesson.getEndDate() + ")? "));
-      } catch(Exception e) {
-        //클라이언트가 보낸 날짜가 유효하지 않으면 무시
+          Input.getDateValue(in, out, "종료일(" + lesson.getEndDate() + ")? "));
+      } catch (Exception e) {
+        // 클라이언트가 보낸 날짜가 유효하지 않으면 무시
       }
-
+      
       try {
         data.setTotalHours(
-            Input.getIntValue(in, out, "총수업시간(" + lesson.getTotalHours() + ")? "));
-      } catch(Exception e) {
-        //클라이언트가 보낸 값이 숫자가  아니라면 무시
+          Input.getIntValue(in, out, "총수업시간(" + lesson.getTotalHours() + ")? "));
+      } catch (Exception e) {
+        // 클라이언트가 보낸 값이 숫자가 아니라면 무시
       }
-
+      
       try {
         data.setDayHours(
-            Input.getIntValue(in, out, "일수업시간(" + lesson.getDayHours() + ")? "));
-      } catch(Exception e) {
-        //클라이언트가 보낸 값이 숫자가  아니라면 무시
+          Input.getIntValue(in, out, "일수업시간(" + lesson.getDayHours() + ")? "));
+      } catch (Exception e) {
+        // 클라이언트가 보낸 값이 숫자가 아니라면 무시
       }
 
       lessonDao.update(data);
+      
       out.println("데이터를 변경하였습니다.");
 
     } catch (Exception e) {
@@ -157,7 +158,6 @@ public class LessonCommand {
       System.out.println(e.getMessage());
     }
   }
-  
 }
 
 

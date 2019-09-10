@@ -1,7 +1,6 @@
 package com.eomcs.lms.dao.mariadb;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -11,8 +10,8 @@ import com.eomcs.lms.domain.Lesson;
 
 public class LessonDaoImpl implements LessonDao {
 
-  
   Connection con;
+  
   public LessonDaoImpl(Connection con) {
     this.con = con;
   }

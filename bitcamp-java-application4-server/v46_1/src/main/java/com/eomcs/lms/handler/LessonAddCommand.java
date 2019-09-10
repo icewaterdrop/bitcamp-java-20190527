@@ -17,6 +17,7 @@ public class LessonAddCommand implements Command {
   public String getCommandName() {
     return "/lesson/add";
   }
+  
   @Override
   public void execute(BufferedReader in, PrintStream out) {
     try {

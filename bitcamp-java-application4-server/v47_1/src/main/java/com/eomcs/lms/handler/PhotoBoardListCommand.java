@@ -16,8 +16,6 @@ public class PhotoBoardListCommand implements Command {
     this.photoBoardDao = photoBoardDao;
   }
   
-
-  
   @Override
   public void execute(BufferedReader in, PrintStream out) {
     try {

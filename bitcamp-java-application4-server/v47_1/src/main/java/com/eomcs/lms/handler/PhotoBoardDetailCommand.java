@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.PrintStream;
 import java.util.List;
 import com.eomcs.lms.dao.PhotoBoardDao;
-import com.eomcs.lms.dao.PhotoFileDao;
 import com.eomcs.lms.domain.PhotoBoard;
 import com.eomcs.lms.domain.PhotoFile;
 import com.eomcs.util.Component;
@@ -18,8 +17,6 @@ public class PhotoBoardDetailCommand implements Command {
   public PhotoBoardDetailCommand(PhotoBoardDao photoBoardDao) {
     this.photoBoardDao = photoBoardDao;
   }
-  
-
   
   @Override
   public void execute(BufferedReader in, PrintStream out) {

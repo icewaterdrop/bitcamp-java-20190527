@@ -13,7 +13,6 @@ public class MemberDeleteCommand implements Command {
   public MemberDeleteCommand(MemberDao memberDao) {
     this.memberDao = memberDao;
   }
- 
 
   @Override
   public void execute(BufferedReader in, PrintStream out) {

@@ -12,9 +12,11 @@ public class MemberDetailCommand implements Command {
   public MemberDetailCommand(MemberDao memberDao) {
     this.memberDao = memberDao;
   }
+
   public String getCommandName() {
     return "/member/detail";
   }
+  
   @Override
   public void execute(BufferedReader in, PrintStream out) {
     try {

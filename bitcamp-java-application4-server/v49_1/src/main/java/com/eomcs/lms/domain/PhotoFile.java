@@ -9,8 +9,6 @@ public class PhotoFile implements Serializable {
   private String filePath;
   private int boardNo;
   
-  
-  
   @Override
   public String toString() {
     return "PhotoFile [no=" + no + ", filePath=" + filePath + ", boardNo=" + boardNo + "]";

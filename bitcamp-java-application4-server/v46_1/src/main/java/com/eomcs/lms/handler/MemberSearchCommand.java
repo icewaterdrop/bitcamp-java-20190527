@@ -17,6 +17,7 @@ public class MemberSearchCommand implements Command {
   public String getCommandName() {
     return "/member/search";
   }
+  
   @Override
   public void execute(BufferedReader in, PrintStream out) {
     try {

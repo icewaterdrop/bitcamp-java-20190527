@@ -10,13 +10,12 @@ import com.eomcs.util.Input;
 @Component("/board/add")
 public class BoardAddCommand implements Command {
   
-private BoardDao boardDao;
-
+  private BoardDao boardDao;
+  
   public BoardAddCommand(BoardDao boardDao) {
     this.boardDao = boardDao;
   }
   
-
   @Override
   public void execute(BufferedReader in, PrintStream out) {
     try {

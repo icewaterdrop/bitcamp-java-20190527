@@ -71,10 +71,8 @@ public class App {
       MemberDao memberDao = new MemberDaoImpl(con);
       LessonDao lessonDao = new LessonDaoImpl(con);
       PhotoBoardDao photoBoardDao = new PhotoBoardDaoImpl(con);
-      PhotoFileDao photoFileDao = new PhotoFileDaoImpl(con); 
-        
+      PhotoFileDao photoFileDao = new PhotoFileDaoImpl(con);
 
-      
       // 클라이언트 명령을 처리할 커맨드 객체를 준비한다.
       commandMap.put("/lesson/add", new LessonAddCommand(lessonDao));
       commandMap.put("/lesson/delete", new LessonDeleteCommand(lessonDao));
@@ -97,10 +95,13 @@ public class App {
 
       commandMap.put("/photoboard/add", 
           new PhotoBoardAddCommand(photoBoardDao, photoFileDao));
-      commandMap.put("/photoboard/delete", new PhotoBoardDeleteCommand(photoBoardDao, photoFileDao));
-      commandMap.put("/photoboard/detail", new PhotoBoardDetailCommand(photoBoardDao, photoFileDao));
+      commandMap.put("/photoboard/delete", 
+          new PhotoBoardDeleteCommand(photoBoardDao, photoFileDao));
+      commandMap.put("/photoboard/detail", 
+          new PhotoBoardDetailCommand(photoBoardDao, photoFileDao));
       commandMap.put("/photoboard/list", new PhotoBoardListCommand(photoBoardDao));
-      commandMap.put("/photoboard/update", new PhotoBoardUpdateCommand(photoBoardDao, photoFileDao));
+      commandMap.put("/photoboard/update", 
+          new PhotoBoardUpdateCommand(photoBoardDao, photoFileDao));
       
     } catch (Exception e) {
       System.out.println("DBMS에 연결할 수 없습니다!");
@@ -180,7 +181,6 @@ public class App {
           // non-static 중첩 클래스는 바깥 클래스의 인스턴스 멤버를 사용할 수 있다.
           Command command = commandMap.get(request);
           if (command == null) {
-            
             out.println("해당 명령을 처리할 수 없습니다.");
           } else {
             command.execute(in, out);

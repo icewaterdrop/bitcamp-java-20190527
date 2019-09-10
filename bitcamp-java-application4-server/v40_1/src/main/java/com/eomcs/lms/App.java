@@ -55,6 +55,7 @@ public class App {
   ExecutorService executorService = Executors.newCachedThreadPool();
   
   ConnectionFactory conFactory;
+  
   public App() throws Exception {
 
     // 처음에는 클라이언트 요청을 처리해야 하는 상태로 설정한다.
@@ -62,21 +63,19 @@ public class App {
     
     try {
       // 커넥션 관리자를 준비한다.
-     conFactory = new ConnectionFactory("org.mariadb.jdbc.Driver", 
-          "jdbc:mariadb://localhost/bitcampdb?user=bitcamp&password=1111",
-          "bitcamp", 
-          "1111");      
-      
+      conFactory = new ConnectionFactory(
+          "org.mariadb.jdbc.Driver",
+          "jdbc:mariadb://localhost/bitcampdb",
+          "bitcamp",
+          "1111");
 
       // Command 객체가 사용할 데이터 처리 객체를 준비한다.
       BoardDao boardDao = new BoardDaoImpl(conFactory);
       MemberDao memberDao = new MemberDaoImpl(conFactory);
       LessonDao lessonDao = new LessonDaoImpl(conFactory);
       PhotoBoardDao photoBoardDao = new PhotoBoardDaoImpl(conFactory);
-      PhotoFileDao photoFileDao = new PhotoFileDaoImpl(conFactory); 
-        
+      PhotoFileDao photoFileDao = new PhotoFileDaoImpl(conFactory);
 
-      
       // 클라이언트 명령을 처리할 커맨드 객체를 준비한다.
       commandMap.put("/lesson/add", new LessonAddCommand(lessonDao));
       commandMap.put("/lesson/delete", new LessonDeleteCommand(lessonDao));
@@ -99,10 +98,13 @@ public class App {
 
       commandMap.put("/photoboard/add", 
           new PhotoBoardAddCommand(conFactory, photoBoardDao, photoFileDao));
-      commandMap.put("/photoboard/delete", new PhotoBoardDeleteCommand(conFactory, photoBoardDao, photoFileDao));
-      commandMap.put("/photoboard/detail", new PhotoBoardDetailCommand(photoBoardDao, photoFileDao));
+      commandMap.put("/photoboard/delete", 
+          new PhotoBoardDeleteCommand(conFactory, photoBoardDao, photoFileDao));
+      commandMap.put("/photoboard/detail", 
+          new PhotoBoardDetailCommand(photoBoardDao, photoFileDao));
       commandMap.put("/photoboard/list", new PhotoBoardListCommand(photoBoardDao));
-      commandMap.put("/photoboard/update", new PhotoBoardUpdateCommand(conFactory, photoBoardDao, photoFileDao));
+      commandMap.put("/photoboard/update", 
+          new PhotoBoardUpdateCommand(conFactory, photoBoardDao, photoFileDao));
       
     } catch (Exception e) {
       System.out.println("DBMS에 연결할 수 없습니다!");
@@ -175,7 +177,6 @@ public class App {
           // non-static 중첩 클래스는 바깥 클래스의 인스턴스 멤버를 사용할 수 있다.
           Command command = commandMap.get(request);
           if (command == null) {
-            
             out.println("해당 명령을 처리할 수 없습니다.");
           } else {
             command.execute(in, out);
@@ -190,9 +191,9 @@ public class App {
         System.out.println("클라이언트와 통신 오류!");
         
       } finally {
-        // 현재 스레드가 클라이언트 요청을 처리했으면 (정상처리든 오류가 발생했든 )
+        // 현재 스레드가 클라이언트 요청을 처리했으면 (정상처리든 오류가 발생했든)
         // 현재 스레드에 보관된 커넥션 객체를 제거해야 한다.
-        // 그래야만 다음 클라이언트 요청이 들어 왔을 때
+        // 그래야만 다음 클라이언트 요청이 들어 왔을 때 
         // 새 커넥션 객체를 사용할 것이다.
         conFactory.clearConnection();
       }

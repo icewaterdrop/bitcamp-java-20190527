@@ -15,7 +15,6 @@ public class LessonDeleteCommand implements Command {
     this.lessonDao = lessonDao;
   }
 
-
   @Override
   public void execute(BufferedReader in, PrintStream out) {
     try {

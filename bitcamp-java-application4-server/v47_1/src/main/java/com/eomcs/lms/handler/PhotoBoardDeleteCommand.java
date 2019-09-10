@@ -23,7 +23,7 @@ public class PhotoBoardDeleteCommand implements Command {
     this.photoBoardDao = photoBoardDao;
     this.photoFileDao = photoFileDao;
   }
-
+  
   @Override
   public void execute(BufferedReader in, PrintStream out) {
     try {

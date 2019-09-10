@@ -20,9 +20,10 @@ import com.eomcs.util.Input;
 public class PhotoBoardCommand {
   
   // 이 클래스에서 로그를 출력할 일이 있다면 다음과 같이 로거를 만들어 사용하라!
-//  private static final Logger logger = 
-//      LogManager.getLogger(PhotoBoardCommand.class);
-  
+  /*
+  private static final Logger logger = 
+      LogManager.getLogger(PhotoBoardCommand.class);
+  */
   
   private PhotoBoardDao photoBoardDao;
   private PhotoFileDao photoFileDao;
@@ -37,7 +38,6 @@ public class PhotoBoardCommand {
   @Transactional
   @RequestMapping("/photoboard/add") // 클라이언트 요청이 들어 왔을 때 이 메서드를 호출하라고 표시한다.
   public void add(BufferedReader in, PrintStream out) {
-
     try {
       PhotoBoard photoBoard = new PhotoBoard();
       photoBoard.setTitle(Input.getStringValue(in, out, "제목? "));
@@ -66,7 +66,6 @@ public class PhotoBoardCommand {
         photoFileDao.insert(photoFile);
         count++;
       }
-      
       out.println("저장하였습니다.");
       
     } catch (Exception e) {
@@ -95,7 +94,6 @@ public class PhotoBoardCommand {
       out.println("데이터를 삭제하였습니다.");
       
     } catch (Exception e) {
-      
       out.println("데이터 삭제에 실패했습니다!");
       throw new RuntimeException(e);
     }
@@ -219,9 +217,7 @@ public class PhotoBoardCommand {
       out.println("사진을 변경하였습니다.");
       
     } catch (Exception e) {
-      
       out.println("데이터 변경에 실패했습니다!");
-      System.out.println(e.getMessage());
       throw new RuntimeException(e);
     }
   }
