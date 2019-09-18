@@ -2,11 +2,14 @@ package com.eomcs.lms.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.StringWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import com.eomcs.lms.dao.PhotoBoardDao;
 import com.eomcs.lms.dao.PhotoFileDao;
@@ -17,6 +20,7 @@ import com.eomcs.lms.domain.PhotoFile;
 public class PhothoBoardAddServlet extends HttpServlet {
 
   private static final long serialVersionUID = 1L;
+  private static final Logger logger = LogManager.getLogger(PhothoBoardAddServlet.class);
 
   private PhotoBoardDao photoBoardDao;
   private PhotoFileDao photoFileDao;
@@ -26,7 +30,7 @@ public class PhothoBoardAddServlet extends HttpServlet {
     ApplicationContext appCtx = (ApplicationContext) getServletContext().getAttribute("iocContainer");
     photoBoardDao = appCtx.getBean(PhotoBoardDao.class);
     photoFileDao = appCtx.getBean(PhotoFileDao.class);
-    
+
   }
 
   @Override
@@ -51,12 +55,7 @@ public class PhothoBoardAddServlet extends HttpServlet {
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("text/html;charset=UTF-8");
-    PrintWriter out = response.getWriter();
-    out.println("<html><head><title>사진게시물 등록</title>"
-        + "<meta http-equiv='Refresh' content='1;url=/photoboard/list'>"
-        + "</head>");
-    out.println("<body><h1>사진게시물 등록</h1>");
+
     try {
       PhotoBoard photoBoard = new PhotoBoard();
       photoBoard.setTitle(request.getParameter("title"));
@@ -81,15 +80,24 @@ public class PhothoBoardAddServlet extends HttpServlet {
         throw new Exception("사진 파일 없음!");
       }
 
-      out.println("<p>저장하였습니다.</p>");
+      response.sendRedirect("/photoboard/list");
 
     } catch (Exception e) {
-      out.println("<p>데이터 저장에 실패했습니다!</p>");
-      throw new RuntimeException(e);
 
-    } finally {
+      response.setContentType("text/html;charset=UTF-8");
+      PrintWriter out = response.getWriter();
+      out.println("<html><head><title>사진게시물 등록</title></head>");
+      out.println("<body><h1>사진게시물 등록</h1>");
+      out.println("<p>데이터 저장에 실패했습니다!</p>");
       out.println("</body></html>");
-    }
+      response.setHeader("refresh", "1;url=/photoboard/list");
+
+      // 왜 오류가 발생했는지 자세한 사항은 로그로 남긴다.
+      StringWriter strOut = new StringWriter();
+      e.printStackTrace(new PrintWriter(strOut));
+      logger.error(strOut.toString());
+
+    } 
   }
 
 }
