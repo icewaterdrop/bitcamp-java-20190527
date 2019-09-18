@@ -1,10 +1,9 @@
-// v56_8 : 멀티 파트 파라미터 처리하기
+// v56_7 : 필터를 활용하여 로그인 여부 검사하기
 package com.eomcs.lms;
 
 // 작업:
-// => MemberAddServlet 변경
-// => MemberDetailServlet 변경
-// => MemberUpdateservlet 변경
+// => AuthFilter 생성
+// => web.xml 변경 
 
 // dummy 클래스!
 // => 기존 버전에서 계속 존재했던 클래스라서 그대로 둠.
