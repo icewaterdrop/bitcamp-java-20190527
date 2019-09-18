@@ -19,7 +19,6 @@ public class PhothoBoardDeleteServlet extends HttpServlet {
 
   private static final long serialVersionUID = 1L;
   
-  private static final Logger logger = LogManager.getLogger(PhothoBoardDeleteServlet.class);
 
   private PhotoBoardDao photoBoardDao;
   private PhotoFileDao photoFileDao;
@@ -34,7 +33,7 @@ public class PhothoBoardDeleteServlet extends HttpServlet {
 
 
   @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
     try {
       int no = Integer.parseInt(request.getParameter("no"));
@@ -46,19 +45,10 @@ public class PhothoBoardDeleteServlet extends HttpServlet {
 
     } catch (Exception e) {
       
-      response.setContentType("text/html;charset=UTF-8");
-      PrintWriter out = response.getWriter();
-      out.println("<html><head><title>사진게시물 삭제</title></head>");
-      out.println("<body><h1>사진게시물 삭제</h1>");
-      out.println("<p>데이터 삭제에 실패했습니다!</p>");
-      out.println("</body></html>");
-      response.setHeader("refresh", "1;url=/photoboard/list");
-      
-      // 왜 오류가 발생했는지 자세한 사항은 로그로 남긴다.
-      StringWriter strOut = new StringWriter();
-      e.printStackTrace(new PrintWriter(strOut));
-      logger.error(strOut.toString());
-
+      request.setAttribute("message", "데이터 삭제에 실패했습니다!");
+      request.setAttribute("refresh", "/photoboard/list");
+      request.setAttribute("error", e);
+      request.getRequestDispatcher("/error").forward(request, response);
     } 
   }
 

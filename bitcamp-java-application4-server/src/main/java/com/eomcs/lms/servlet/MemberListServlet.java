@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.ApplicationContext;
-import org.springframework.web.bind.annotation.RequestMapping;
 import com.eomcs.lms.dao.MemberDao;
 import com.eomcs.lms.domain.Member;
 
@@ -20,23 +19,28 @@ public class MemberListServlet extends HttpServlet{
 
   @Override
   public void init() throws ServletException {
-    
+
     ApplicationContext appCtx = (ApplicationContext) getServletContext().getAttribute("iocContainer");
     memberDao = appCtx.getBean(MemberDao.class);
   }
 
-  
-  
+
+
   @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
     out.println("<html><head><title>회원 목록</title>"
         + "<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>"
+        + "<link rel='stylesheet' href='/css/common.css'>"
         + "</head>");
-    out.println("<body><h1>회원 목록</h1>");
+    out.println("<body>");
+    request.getRequestDispatcher("/header").include(request, response);
+
+    out.println("<div id='content'>");
+    out.println("<h1>회원 목록</h1>");
     out.println("<a href='/member/add'>새 회원</a><br>");
-    
+
     try {
       out.println("<table class='table table-hover'>");
       out.println("<tr><th>번호</th><th>이름</th><th>이메일</th><th>전화</th><th>등록일</th></tr>");
@@ -60,15 +64,17 @@ public class MemberListServlet extends HttpServlet{
       out.println("검색어: <input type='text' name='keyword'>");
       out.println("<button>검색</button>");
       out.println("</form>");
-      
+
     } catch (Exception e) {
       out.println("<p>데이터 목록 조회에 실패했습니다!</p>");
       throw new RuntimeException(e);
-    
+
     } finally {
+      out.println("</div>");
+      request.getRequestDispatcher("/footer").include(request, response);
       out.println("</body></html>");
     }
   }
-  
+
 
 }

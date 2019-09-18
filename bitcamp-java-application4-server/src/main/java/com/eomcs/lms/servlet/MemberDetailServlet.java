@@ -2,14 +2,12 @@ package com.eomcs.lms.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.ApplicationContext;
-import org.springframework.web.bind.annotation.RequestMapping;
 import com.eomcs.lms.dao.MemberDao;
 import com.eomcs.lms.domain.Member;
 
@@ -26,11 +24,18 @@ public class MemberDetailServlet extends HttpServlet{
   }
   
   @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
-    out.println("<html><head><title>회원 상세</title></head>");
-    out.println("<body><h1>회원 상세</h1>");
+    out.println("<html><head><title>회원 상세</title>"
+        + "<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>"
+        + "<link rel='stylesheet' href='/css/common.css'>"
+        + "</head>");
+    out.println("<body>");
+    request.getRequestDispatcher("/header").include(request, response);
+
+    out.println("<div id='content'>");
+    out.println("<h1>회원 상세</h1>");
     
     try {
       int no = Integer.parseInt(request.getParameter("no"));
@@ -64,6 +69,8 @@ public class MemberDetailServlet extends HttpServlet{
       throw new RuntimeException(e);
       
     } finally {
+      out.println("</div>");
+      request.getRequestDispatcher("/footer").include(request, response);
       out.println("</body></html>");
     }
   }
