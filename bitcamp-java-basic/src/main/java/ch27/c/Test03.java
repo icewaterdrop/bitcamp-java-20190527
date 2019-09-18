@@ -14,6 +14,8 @@ public class Test03 {
   }
   
   public static void print2(String[] names) {
+    
+    
     System.out.print("==> ");
     for (String name : names) {
       System.out.print(name + ",");
