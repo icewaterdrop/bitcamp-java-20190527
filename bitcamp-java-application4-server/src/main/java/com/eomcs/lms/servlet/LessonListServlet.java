@@ -13,22 +13,22 @@ import com.eomcs.lms.dao.LessonDao;
 import com.eomcs.lms.domain.Lesson;
 
 @WebServlet("/lesson/list")
-public class LessonListServlet extends HttpServlet{
-
+public class LessonListServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
-
-
+  
   private LessonDao lessonDao;
 
   @Override
   public void init() throws ServletException {
-    ApplicationContext appCtx = (ApplicationContext) getServletContext().getAttribute("iocContainer");
+    ApplicationContext appCtx = 
+        (ApplicationContext) getServletContext().getAttribute("iocContainer");
     lessonDao = appCtx.getBean(LessonDao.class);
   }
 
-
   @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+  public void doGet(HttpServletRequest request, HttpServletResponse response) 
+      throws IOException, ServletException {
+    
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
     out.println("<html><head><title>수업 목록</title>"
@@ -36,8 +36,9 @@ public class LessonListServlet extends HttpServlet{
         + "<link rel='stylesheet' href='/css/common.css'>"
         + "</head>");
     out.println("<body>");
-    request.getRequestDispatcher("/header").include(request, response);
 
+    request.getRequestDispatcher("/header").include(request, response);
+    
     out.println("<div id='content'>");
     out.println("<h1>수업 목록</h1>");
     out.println("<a href='/lesson/add'>새 수업</a><br>");
@@ -59,11 +60,11 @@ public class LessonListServlet extends HttpServlet{
             lesson.getTotalHours());
       }
       out.println("</table>");
-
+      
     } catch (Exception e) {
       out.println("<p>데이터 목록 조회에 실패했습니다!</p>");
       throw new RuntimeException(e);
-
+      
     } finally {
       out.println("</div>");
       request.getRequestDispatcher("/footer").include(request, response);
