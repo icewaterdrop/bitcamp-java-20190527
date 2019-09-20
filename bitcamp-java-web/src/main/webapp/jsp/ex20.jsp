@@ -12,10 +12,11 @@
 <title>ex20</title>
 </head>
 <body>
-<h1>pageError, isPageError</h1>
+<h1>errorPage 속성과, isErrorPage 속성</h1>
 10 / 0 = <%=10 / 0%>
 </body>
 </html>
+
 <%--
 errorPage
 => JSP를 실행하는 중에 오류가 발생했을 때 실행할 JSP를 지정할 수 있다.
