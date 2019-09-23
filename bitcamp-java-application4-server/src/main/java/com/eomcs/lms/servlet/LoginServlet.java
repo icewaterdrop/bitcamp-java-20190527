@@ -29,8 +29,7 @@ public class LoginServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) 
       throws IOException, ServletException {
-    response.setContentType("text/html;charset=UTF-8");
-    request.getRequestDispatcher("/jsp/auth/form.jsp").include(request, response);
+    request.setAttribute("viewUrl", "/jsp/auth/form.jsp");
   }
   
   @Override
@@ -55,13 +54,11 @@ public class LoginServlet extends HttpServlet {
       
       HttpSession session = request.getSession();
       session.setAttribute("loginUser", member);
-      response.sendRedirect("/board/list");
+      request.setAttribute("viewUrl", "redirect:../board/list");
       
     } catch (Exception e) {
-      request.setAttribute("message", e.getMessage());
-      request.setAttribute("refresh", "/auth/login");
       request.setAttribute("error", e);
-      request.getRequestDispatcher("/jsp/error.jsp").forward(request, response);
+      request.setAttribute("refresh", "login");
     }
   }
 
