@@ -1,11 +1,8 @@
 package com.eomcs.lms.servlet;
 
-import static org.reflections.ReflectionUtils.getMethods;
-import static org.reflections.ReflectionUtils.withAnnotation;
-import static org.reflections.ReflectionUtils.withModifier;
 import java.io.IOException;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -16,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.context.ApplicationContext;
-import org.springframework.web.bind.annotation.RequestMapping;
 import com.eomcs.util.RequestMappingHandlerMapping;
 import com.eomcs.util.RequestMappingHandlerMapping.RequestHandler;
 
@@ -37,6 +33,7 @@ public class DispatcherServlet extends HttpServlet {
     handlerMapping = new RequestMappingHandlerMapping(iocContainer);
   }
   
+  @SuppressWarnings("unchecked")
   @Override
   public void service(HttpServletRequest request, HttpServletResponse response) 
       throws IOException, ServletException {
@@ -54,7 +51,14 @@ public class DispatcherServlet extends HttpServlet {
       }
       
       // request handler를 실행한다.
-      String viewUrl = (String) requestHandler.invoke(request, response);
+      Map<String,Object> model = 
+          (Map<String,Object>) requestHandler.invoke(request, response);
+      
+      // 리턴 받은 맵에 보관된 값을 JSP가 사용할 수 있도록 ServletRequest로 옮긴다.
+      Set<Entry<String,Object>> entries = model.entrySet();
+      for (Entry<String,Object> entry : entries) {
+        request.setAttribute(entry.getKey(), entry.getValue());
+      }
       
       // 응답 콘텐트의 MIME 타입과 문자집합을 설정한다.
       String contentType = (String) request.getAttribute("contentType");
@@ -65,6 +69,7 @@ public class DispatcherServlet extends HttpServlet {
       }
       
       // 페이지 컨트롤러 작업을 수행한 후 리턴 URL에 따라 JSP를 실행한다.
+      String viewUrl = (String) model.get("viewUrl");
       if (viewUrl != null) {
         if (viewUrl.startsWith("redirect:")) {
           response.sendRedirect(viewUrl.substring(9)); // "redirect:list"
@@ -78,8 +83,6 @@ public class DispatcherServlet extends HttpServlet {
       request.getRequestDispatcher("/jsp/error.jsp").forward(request, response);
     }
   }
-
-
 }
 
 
