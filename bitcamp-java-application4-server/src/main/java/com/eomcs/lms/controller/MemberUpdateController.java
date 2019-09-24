@@ -6,17 +6,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestMapping;
 import com.eomcs.lms.dao.MemberDao;
 import com.eomcs.lms.domain.Member;
 
 @Component("/member/update")
-public class MemberUpdateController implements PageController {
+public class MemberUpdateController {
 
   @Resource 
   private MemberDao memberDao;
 
 
-  @Override
+  @RequestMapping
   public String execute(HttpServletRequest request, HttpServletResponse response) 
       throws Exception {
     String uploadDir = request.getServletContext().getRealPath("/upload/member");

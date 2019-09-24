@@ -4,17 +4,18 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestMapping;
 import com.eomcs.lms.dao.MemberDao;
 import com.eomcs.lms.domain.Member;
 
 @Component("/member/detail")
-public class MemberDetailController implements PageController {
+public class MemberDetailController {
 
   @Resource 
   private MemberDao memberDao;
 
 
-  @Override
+  @RequestMapping
   public String execute(HttpServletRequest request, HttpServletResponse response) 
       throws Exception {
 

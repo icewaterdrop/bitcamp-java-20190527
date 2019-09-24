@@ -4,16 +4,17 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestMapping;
 import com.eomcs.lms.dao.MemberDao;
 
 @Component("/member/delete")
-public class MemberDeleteController implements PageController {
+public class MemberDeleteController {
 
   @Resource 
   private MemberDao memberDao;
 
 
-  @Override
+  @RequestMapping
   public String execute(HttpServletRequest request, HttpServletResponse response) 
       throws Exception {
 
