@@ -1,10 +1,11 @@
-// v58_5 : request handler의 파라미터 값을 자동 주입하기
+// v59_1 : Spring WebMVC 적용하기
 package com.eomcs.lms;
 
 // 작업:
-// => request handler를 정의할 때 필요한 파라미터를 동적으로 선언한다.
-// => RequestMappingHandlerMapping 변경
-//
+// => ContextLoaderListener 삭제
+// => ㅇispatcherServlet 삭제
+// => RequestMappingHandlerMapping 삭제
+// => 
 //
 // dummy 클래스!
 // => 기존 버전에서 계속 존재했던 클래스라서 그대로 둠.
