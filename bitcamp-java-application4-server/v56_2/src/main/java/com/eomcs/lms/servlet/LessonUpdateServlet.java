@@ -13,16 +13,16 @@ import com.eomcs.lms.dao.LessonDao;
 import com.eomcs.lms.domain.Lesson;
 
 @WebServlet("/lesson/update")
-public class LessonUpdateServlet extends HttpServlet{
-
+public class LessonUpdateServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
   
   private LessonDao lessonDao;
 
   @Override
   public void init() throws ServletException {
-    ApplicationContext appCtx = (ApplicationContext) getServletContext().getAttribute("iocContainer");
-  lessonDao = appCtx.getBean(LessonDao.class);
+    ApplicationContext appCtx = 
+        (ApplicationContext) getServletContext().getAttribute("iocContainer");
+    lessonDao = appCtx.getBean(LessonDao.class);
   }
 
   @Override
@@ -42,14 +42,14 @@ public class LessonUpdateServlet extends HttpServlet{
       lesson.setEndDate(Date.valueOf(request.getParameter("endDate")));
       lesson.setTotalHours(Integer.parseInt(request.getParameter("totalHours")));
       lesson.setDayHours(Integer.parseInt(request.getParameter("dayHours")));
-
+      
       lessonDao.update(lesson);
       out.println("<p>변경 했습니다</p>");
-
+      
     } catch (Exception e) {
       out.println("<p>데이터 변경에 실패했습니다!</p>");
       throw new RuntimeException(e);
-
+      
     } finally {
       out.println("</body></html>");
     }

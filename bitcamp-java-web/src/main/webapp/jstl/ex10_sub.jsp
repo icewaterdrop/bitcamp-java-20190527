@@ -13,8 +13,6 @@
 name = ${param.name}<br>
 age = ${param.age}<br>
 gender = ${param.gender}<br>
-
-
 </body>
 </html>
 

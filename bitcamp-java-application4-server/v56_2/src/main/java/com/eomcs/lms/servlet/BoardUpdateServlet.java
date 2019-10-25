@@ -2,30 +2,27 @@ package com.eomcs.lms.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.ApplicationContext;
-import org.springframework.web.bind.annotation.RequestMapping;
 import com.eomcs.lms.dao.BoardDao;
 import com.eomcs.lms.domain.Board;
 
 @WebServlet("/board/update")
-public class BoardUpdateServlet extends HttpServlet{
-  
+public class BoardUpdateServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
   
   private BoardDao boardDao;
   
   @Override
   public void init() throws ServletException {
-    ApplicationContext appCtx =  (ApplicationContext) getServletContext().getAttribute("iocContainer");
+    ApplicationContext appCtx = 
+        (ApplicationContext) getServletContext().getAttribute("iocContainer");
     boardDao = appCtx.getBean(BoardDao.class);
   }
-  
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {

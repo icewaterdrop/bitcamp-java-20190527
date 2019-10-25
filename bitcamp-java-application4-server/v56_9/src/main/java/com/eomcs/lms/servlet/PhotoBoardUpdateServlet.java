@@ -44,14 +44,13 @@ public class PhotoBoardUpdateServlet extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response) 
       throws IOException, ServletException {
     
- // 트랜잭션 동작을 정의한다.
+    // 트랜잭션 동작을 정의한다.
     DefaultTransactionDefinition def = new DefaultTransactionDefinition();
     def.setName("tx1");
     def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
-
+    
     // 정의된 트랜잭션 동작에 따라 작업을 수행할 트랜잭션 객체를 준비한다. 
     TransactionStatus status = txManager.getTransaction(def);
-    
     
     try {
       PhotoBoard photoBoard = new PhotoBoard();
@@ -82,6 +81,7 @@ public class PhotoBoardUpdateServlet extends HttpServlet {
       if (count == 0) {
         throw new Exception("사진 파일 없음!");
       }
+      
       txManager.commit(status);
       
       response.sendRedirect("/photoboard/list");

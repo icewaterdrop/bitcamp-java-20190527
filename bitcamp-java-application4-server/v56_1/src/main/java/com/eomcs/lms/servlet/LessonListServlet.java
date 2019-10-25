@@ -9,24 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.ApplicationContext;
-import org.springframework.web.bind.annotation.RequestMapping;
 import com.eomcs.lms.dao.LessonDao;
 import com.eomcs.lms.domain.Lesson;
 
 @WebServlet("/lesson/list")
-public class LessonListServlet extends HttpServlet{
-
+public class LessonListServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
-  
   
   private LessonDao lessonDao;
 
   @Override
   public void init() throws ServletException {
-    ApplicationContext appCtx = (ApplicationContext) getServletContext().getAttribute("iocContainer");
-  lessonDao = appCtx.getBean(LessonDao.class);
+    ApplicationContext appCtx = 
+        (ApplicationContext) getServletContext().getAttribute("iocContainer");
+    lessonDao = appCtx.getBean(LessonDao.class);
   }
-
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -55,11 +52,11 @@ public class LessonListServlet extends HttpServlet{
             lesson.getTotalHours());
       }
       out.println("</table>");
-
+      
     } catch (Exception e) {
       out.println("<p>데이터 목록 조회에 실패했습니다!</p>");
       throw new RuntimeException(e);
-
+      
     } finally {
       out.println("</body></html>");
     }

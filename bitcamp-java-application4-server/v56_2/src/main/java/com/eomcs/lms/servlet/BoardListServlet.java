@@ -13,19 +13,18 @@ import com.eomcs.lms.dao.BoardDao;
 import com.eomcs.lms.domain.Board;
 
 @WebServlet("/board/list")
-public class BoardListServlet extends HttpServlet{
-  
+public class BoardListServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
   
   private BoardDao boardDao;
   
   @Override
   public void init() throws ServletException {
-    ApplicationContext appCtx =  (ApplicationContext) getServletContext().getAttribute("iocContainer");
+    ApplicationContext appCtx = 
+        (ApplicationContext) getServletContext().getAttribute("iocContainer");
     boardDao = appCtx.getBean(BoardDao.class);
   }
   
- 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("text/html;charset=UTF-8");

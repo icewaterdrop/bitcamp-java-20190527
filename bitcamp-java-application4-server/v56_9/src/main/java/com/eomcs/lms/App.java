@@ -2,12 +2,12 @@
 package com.eomcs.lms;
 
 // 작업:
-// =>PhotoboardAddServlet 변경
-// =>PhotoboardUpdateServlet 변경
-// =>PhotoboardDeleteServlet 변경
-// => 서블릿은 Spring IoC 컨테이너가 관히하는 대상이 아니기 때문에 
-//  @Transactional 애노 테이션으로 트랜잭션을 제어할 수 없다
-//  따라서 직접 코드를 제어해야 한다.
+// => PhotoBoardAddServlet 변경
+// => PhotoBoardUpdateServlet 변경
+// => PhotoBoardDeleteServlet 변경
+// => 서블릿은 Spring IoC 컨테이너가 관리하는 대상이 아니기 때문에
+//    @Transactional 애노테이션으로 트랜잭션을 제어할 수 없다.
+//    따라서 직접 코드를 통해 제어해야 한다.
 //
 // dummy 클래스!
 // => 기존 버전에서 계속 존재했던 클래스라서 그대로 둠.

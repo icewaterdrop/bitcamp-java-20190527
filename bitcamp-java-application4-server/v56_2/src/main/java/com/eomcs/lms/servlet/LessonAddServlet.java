@@ -3,29 +3,26 @@ package com.eomcs.lms.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.ApplicationContext;
-import org.springframework.web.bind.annotation.RequestMapping;
 import com.eomcs.lms.dao.LessonDao;
 import com.eomcs.lms.domain.Lesson;
 
 @WebServlet("/lesson/add")
-public class LessonAddServlet extends HttpServlet{
-
+public class LessonAddServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
-  
   
   private LessonDao lessonDao;
 
   @Override
   public void init() throws ServletException {
-    ApplicationContext appCtx = (ApplicationContext) getServletContext().getAttribute("iocContainer");
-  lessonDao = appCtx.getBean(LessonDao.class);
+    ApplicationContext appCtx = 
+        (ApplicationContext) getServletContext().getAttribute("iocContainer");
+    lessonDao = appCtx.getBean(LessonDao.class);
   }
 
   @Override
@@ -45,7 +42,7 @@ public class LessonAddServlet extends HttpServlet{
     out.println("</form>");
     out.println("</body></html>");
   }
-
+  
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("text/html;charset=UTF-8");
@@ -56,26 +53,25 @@ public class LessonAddServlet extends HttpServlet{
     out.println("<body><h1>수업 등록</h1>");
     try {
       Lesson lesson = new Lesson();
-
+      
       lesson.setTitle(request.getParameter("title"));
       lesson.setContents(request.getParameter("contents"));
       lesson.setStartDate(Date.valueOf(request.getParameter("startDate")));
       lesson.setEndDate(Date.valueOf(request.getParameter("endDate")));
       lesson.setTotalHours(Integer.parseInt(request.getParameter("totalHours")));
       lesson.setDayHours(Integer.parseInt(request.getParameter("dayHours")));
-
+      
       lessonDao.insert(lesson);
       out.println("<p>저장하였습니다.</p>");
-
+      
     } catch (Exception e) {
       out.println("<p>데이터 저장에 실패했습니다!</p>");
       throw new RuntimeException(e);
-
+      
     } finally {
       out.println("</body></html>");
     }
   }
-
 }
 
 

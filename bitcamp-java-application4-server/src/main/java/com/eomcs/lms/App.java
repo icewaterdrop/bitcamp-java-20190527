@@ -1,23 +1,20 @@
-// v59_2 : WebApplicationInitializer를 사용하여 DispatcherServlet 배치하기
+// v63 : 자바스트립트 템플릿 엔진 Handlebars 도입하기
 package com.eomcs.lms;
 
-// 작업:
-// => com.eomcs.lms.controller 를 com.eomcs.lms.web으로 변경
-// => com.eomcs.lms.config.WebConfig 생성
-// => AppWebApplicationInitializer 생성
-// => /WEB-INF/web.xml 변경 
-//      - DispactcherServlet 배치 정보 제거
-//      - ContextLoaderListener 배치 정보제거
-//      - ContextLoaderListener 가 사용하는 컨텍스트 파라미터 정보 제거
-// => AppConfig, DatabaseConfig, MybatisConfig 에서 @Configuration 제거
-//      - AppWebApplicationInitializer 에서 이 Java Config 클래스를 직접 지정하기 때문이다.
-// => com.eomcs.lms.config.Appconfig 변경
-//      - DispactcherServlet의 IoC 컨테이너가 관리하는 com.eomcs.lms.web 패키지는 제외한다.
-// => 기존의 JSP 폴더를 /WEB-INF/jsp 로 옮긴다.
-// => 페이지 컨트롤러가 리턴하는 JSP URL을  InternalResourceViewResolver에 맞춰  변경한다.
+// 작업1: Handlebars 자바스크립트 라이브러리 추가
+// => /src/main/webapp 폴더로 이동
+// => 'npm install handlebars' 실행
 //
+// 작업2: /webapp/html/board-7/list.html 변경
+// => handlebars.min.js 추가
+// => tr 태그를 생성하는 템플릿 소스 추가
 //
-
+// 작업3: /webapp/html/board-7/list.js 변경
+// => tr 태그를 Handlebars 템플릿 엔진으로 생성한다.
+//
+// 작업4: Handlebars의 반복문 이용하기
+// => /webapp/html/board-8/list.html, list.js 변경
+//
 // dummy 클래스!
 // => 기존 버전에서 계속 존재했던 클래스라서 그대로 둠.
 // => 단지 버전의 목표에 대한 설명을 기록하기 위해 존재함.

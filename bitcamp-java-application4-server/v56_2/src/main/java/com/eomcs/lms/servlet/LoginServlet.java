@@ -14,16 +14,15 @@ import com.eomcs.lms.domain.Member;
 
 @WebServlet("/auth/login")
 public class LoginServlet extends HttpServlet {
-  
   private static final long serialVersionUID = 1L;
+  
   private MemberDao memberDao;
   
   @Override
   public void init() throws ServletException {
-    
-    ApplicationContext appCtx = (ApplicationContext) getServletContext().getAttribute("iocContainer");
+    ApplicationContext appCtx = 
+        (ApplicationContext) getServletContext().getAttribute("iocContainer");
     memberDao = appCtx.getBean(MemberDao.class);
-    
   }
 
   @Override

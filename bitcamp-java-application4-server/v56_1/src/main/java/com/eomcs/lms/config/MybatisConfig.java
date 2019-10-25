@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @MapperScan("com.eomcs.lms.dao")
-
 public class MybatisConfig {
   
   @Bean
